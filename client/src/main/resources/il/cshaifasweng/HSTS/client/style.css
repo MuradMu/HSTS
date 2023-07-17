@@ -1,0 +1,28 @@
+.root {
+    -fx-background-image: url("background.jpg");
+    -fx-background-size: cover;
+}
+
+.label {
+    -fx-font-size: 30px;
+    -fx-text-fill: #a22929; /* Set label text color to red */
+    -fx-font-family: "Italian Font"; /* Specify the desired Italian font */
+    -fx-border-width: 2px; /* Set the border width */
+    -fx-padding: 10px; /* Add some padding */
+    -fx-background-color: rgba(143, 124, 116, 0.2); /* Set the background color with opacity */
+}
+.table-label {
+    /* Add specific styling for the labels in tables */
+    -fx-font-size: 14px; /* Set the font size to the desired value */
+    -fx-font-weight: normal; /* Set the font weight to normal (regular) */
+    -fx-text-fill: black; /* Set the text color to black */
+}
+
+.button {
+    -fx-pref-height: 40px;
+    -fx-pref-width: 140px;
+    -fx-font-size: 14px;
+    -fx-background-color: #1636be; /* Set button background color to purple */
+    -fx-text-fill: white; /* Set button text color to white */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0, 0, 4); /* Add a drop shadow effect */
+}
