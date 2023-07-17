@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>OCSFMediatorExample</artifactId>
+		<artifactId>HighSchoolTestSystem</artifactId>
 		<groupId>il.cshaifasweng</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -27,6 +27,34 @@
 			<groupId>${groupId}</groupId>
 			<artifactId>entities</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.28</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.24.Final</version>
+		</dependency>
+        <dependency>
+            <groupId>il.cshaifasweng.OCSFMediatorExample</groupId>
+            <artifactId>client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>RELEASE</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -36,7 +64,7 @@
 					<artifactId>exec-maven-plugin</artifactId>
 					<version>1.6.0</version>
 					<configuration>
-						<mainClass>il.cshaifasweng.OCSFMediatorExample.server.App</mainClass>
+						<mainClass>il.cshaifasweng.HSTS.server.App</mainClass>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -49,7 +77,7 @@
                         </descriptorRefs>
                         <archive>
                             <manifest>
-                                <mainClass>il.cshaifasweng.OCSFMediatorExample.server.App</mainClass>
+                                <mainClass>il.cshaifasweng.HSTS.server.App</mainClass>
                             </manifest>
                         </archive>
                     </configuration>

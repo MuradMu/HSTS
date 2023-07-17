@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.StudentDetails">
+   <children>
+      <TextField fx:id="FirstNameField" editable="false" layoutX="225.0" layoutY="51.0" prefHeight="30.0" prefWidth="220.0" />
+      <Text fx:id="first" layoutX="14.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="153.16246032714844">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+      <TextField fx:id="UsernameField" layoutX="225.0" layoutY="279.0" prefHeight="30.0" prefWidth="220.0" />
+      <Text fx:id="username" layoutX="14.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="153.16246032714844">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+      <TextField fx:id="idField" layoutX="225.0" layoutY="156.0" prefHeight="30.0" prefWidth="220.0" />
+      <Text fx:id="id" layoutX="14.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" wrappingWidth="153.16246032714844">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+      <TextField fx:id="EmaiAddresslField" layoutX="225.0" layoutY="218.0" prefHeight="30.0" prefWidth="220.0" />
+      <Text fx:id="mail" layoutX="14.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address" wrappingWidth="153.16246032714844">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+      <TextField fx:id="PasswordField" layoutX="225.0" layoutY="333.0" prefHeight="30.0" prefWidth="220.0" />
+      <Text fx:id="password" layoutX="14.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="153.16246032714844">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+      <TextField fx:id="LastNameField" layoutX="225.0" layoutY="101.0" prefHeight="30.0" prefWidth="220.0" />
+      <Text fx:id="last" layoutX="14.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" wrappingWidth="153.16246032714844">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+      <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Info">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
