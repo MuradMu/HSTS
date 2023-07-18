@@ -11,27 +11,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="584.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.AddQuestionController">
+<AnchorPane prefHeight="584.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.AddQuestionController">
    <children>
-      <HBox layoutX="-1.0" prefHeight="235.0" prefWidth="806.0">
+      <HBox layoutX="-1.0" prefHeight="331.0" prefWidth="806.0">
          <children>
-            <TableView fx:id="QuestionTable" prefHeight="235.0" prefWidth="854.0">
+            <TableView fx:id="questionTable" prefHeight="245.0" prefWidth="806.0">
             </TableView>
          </children>
       </HBox>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="257.0" prefHeight="37.0" prefWidth="231.0" text="Write Your Question Here:">
+      <Label alignment="CENTER" layoutY="350.0" prefHeight="37.0" prefWidth="142.0" text="Question : ">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="135.0" layoutY="308.0" prefHeight="37.0" prefWidth="186.0" text="A)" textAlignment="CENTER">
+      <TextField id="QuestionText" fx:id="QuestionText" layoutX="146.0" layoutY="331.0" prefHeight="74.0" prefWidth="531.0" />
+      <Button fx:id="AddQuestionButton" layoutX="682.0" layoutY="520.0" mnemonicParsing="false" onAction="#AddQuestion" prefHeight="54.0" prefWidth="118.0" text="AddQuestion" />
+      <Label alignment="CENTER" layoutX="4.0" layoutY="420.0" prefHeight="37.0" prefWidth="142.0" text="A" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="157.0" layoutY="345.0" prefHeight="37.0" prefWidth="142.0" text="B)">
+      <Label alignment="CENTER" layoutX="4.0" layoutY="463.0" prefHeight="37.0" prefWidth="142.0" text="B">
          <font>
             <Font size="24.0" />
          </font>
@@ -39,27 +40,25 @@
             <Blend />
          </effect>
       </Label>
-      <Label alignment="CENTER" layoutX="157.0" layoutY="382.0" prefHeight="37.0" prefWidth="142.0" text="C)">
+      <Label alignment="CENTER" layoutX="4.0" layoutY="500.0" prefHeight="37.0" prefWidth="142.0" text="C">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="157.0" layoutY="425.0" prefHeight="37.0" prefWidth="142.0" text="D)">
+      <Label alignment="CENTER" layoutX="4.0" layoutY="543.0" prefHeight="37.0" prefWidth="142.0" text="D">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="Answer_A" layoutX="252.0" layoutY="313.0" prefHeight="27.0" prefWidth="523.0" />
-      <TextField fx:id="Answer_B" layoutX="252.0" layoutY="350.0" prefHeight="27.0" prefWidth="523.0" />
-      <TextField fx:id="Answer_C" layoutX="252.0" layoutY="387.0" prefHeight="27.0" prefWidth="523.0" />
-      <TextField fx:id="Answer_D" layoutX="252.0" layoutY="430.0" prefHeight="27.0" prefWidth="523.0" />
-      <TextField id="QuestionText" fx:id="QuestionText" layoutX="250.0" layoutY="249.0" prefHeight="54.0" prefWidth="523.0" />
-      <Text layoutX="21.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert choice answer:">
+      <Label alignment="CENTER" layoutX="691.0" layoutY="331.0" prefHeight="38.0" prefWidth="82.0" text="ANSWER">
          <font>
             <Font size="18.0" />
          </font>
-      </Text>
-      <ChoiceBox fx:id="CorrectAnswerBox" layoutX="252.0" layoutY="477.0" prefHeight="25.0" prefWidth="74.0">
+      </Label>
+      <TextField fx:id="B" layoutX="146.0" layoutY="467.0" prefHeight="29.0" prefWidth="531.0" />
+      <TextField fx:id="C" layoutX="146.0" layoutY="504.0" prefHeight="29.0" prefWidth="531.0" />
+      <TextField fx:id="D" layoutX="144.0" layoutY="547.0" prefHeight="30.0" prefWidth="531.0" />
+      <ChoiceBox fx:id="answerChoiceBox" layoutX="695.0" layoutY="375.0" prefHeight="25.0" prefWidth="74.0">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="A" />
@@ -69,15 +68,6 @@
             </FXCollections>
          </items>
       </ChoiceBox>
-      <Button fx:id="AddQuestionButton" layoutX="605.0" layoutY="490.0" mnemonicParsing="false" onAction="#AddQuestion" prefHeight="71.0" prefWidth="200.0" text="Add New Question" textFill="RED">
-         <font>
-            <Font name="Arial" size="19.0" />
-         </font>
-      </Button>
-      <Label alignment="CENTER" layoutX="17.0" layoutY="469.0" prefHeight="38.0" prefWidth="172.0" text="The correct answer is:">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <TextField fx:id="A" layoutX="146.0" layoutY="424.0" prefHeight="29.0" prefWidth="531.0" />
    </children>
 </AnchorPane>

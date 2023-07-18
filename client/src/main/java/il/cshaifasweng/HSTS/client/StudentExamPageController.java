@@ -72,23 +72,24 @@ public class StudentExamPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         EventBus.getDefault().register(this);
-        TableColumn<Question, Integer> Number_of_Question_Colum = new TableColumn<>("Number of Question");
-        TableColumn<Question, String> Question_Text_Colum = new TableColumn<>("Question Text");
-        TableColumn<Question, String> Answer_A_Colum = new TableColumn<>("Answer A");//manual set-> the header label is set to "A",
-        TableColumn<Question, String> Answer_B_Colum = new TableColumn<>("Answer B");
-        TableColumn<Question, String> Answer_C_Colum = new TableColumn<>("Answer C");
-        TableColumn<Question, String> Answer_D_Colum = new TableColumn<>("Answer D");
+        TableColumn<Question, Integer> questionNumCol = new TableColumn<>("Question_num");
+        TableColumn<Question, String> questionCol = new TableColumn<>("Question");
+        TableColumn<Question, String> aCol = new TableColumn<>("A");//manual set-> the header label is set to "A",
+        TableColumn<Question, String> bCol = new TableColumn<>("B");
+        TableColumn<Question, String> cCol = new TableColumn<>("C");
+        TableColumn<Question, String> dCol = new TableColumn<>("D");
 
-        Number_of_Question_Colum.setCellValueFactory(new PropertyValueFactory<>("IdNum"));
-        Question_Text_Colum.setCellValueFactory(new PropertyValueFactory<>("questionText"));
-        Answer_A_Colum.setCellValueFactory(new PropertyValueFactory<>("answerA"));
-        Answer_B_Colum.setCellValueFactory(new PropertyValueFactory<>("answerB"));
-        Answer_C_Colum.setCellValueFactory(new PropertyValueFactory<>("answerC"));
-        Answer_D_Colum.setCellValueFactory(new PropertyValueFactory<>("answerD"));
-        TableColumn<Question, String> Answer_Choice_Colum = new TableColumn<>("Answer Choice");
-        Answer_Choice_Colum.setPrefWidth(100); // Set the preferred width for the column
+        questionNumCol.setCellValueFactory(new PropertyValueFactory<>("IdNum"));
+        questionCol.setCellValueFactory(new PropertyValueFactory<>("questionText"));
+        aCol.setCellValueFactory(new PropertyValueFactory<>("answerA"));
+        bCol.setCellValueFactory(new PropertyValueFactory<>("answerB"));
+        cCol.setCellValueFactory(new PropertyValueFactory<>("answerC"));
+        dCol.setCellValueFactory(new PropertyValueFactory<>("answerD"));
 
-        Answer_Choice_Colum.setCellFactory(column -> {
+        TableColumn<Question, String> answerChoiceCol = new TableColumn<>("Answer Choice");
+        answerChoiceCol.setPrefWidth(100); // Set the preferred width for the column
+
+        answerChoiceCol.setCellFactory(column -> {
             return new TableCell<Question, String>() {
                 private final ChoiceBox<String> choiceBox = new ChoiceBox<>();
 
@@ -117,7 +118,8 @@ public class StudentExamPageController implements Initializable {
         });
 
         questionTable.getColumns().addAll(
-                Number_of_Question_Colum, Question_Text_Colum, Answer_A_Colum, Answer_B_Colum, Answer_C_Colum, Answer_D_Colum, Answer_Choice_Colum);
+                questionNumCol, questionCol, aCol, bCol, cCol, dCol, answerChoiceCol
+        );
         teacherNotesField.setEditable(false);
     }
 
@@ -143,11 +145,11 @@ public class StudentExamPageController implements Initializable {
         Thread remainingTimeThread = new Thread(() -> {
             while (true) {
                 try {
-                    Duration RemainingTime = getRemainingTime();
+                    Duration remainingTime = getRemainingTime();
                     Platform.runLater(() -> {
                         // Update the remaining time label here
-                        long minutes = RemainingTime.toMinutes();
-                        long seconds = RemainingTime.minusMinutes(minutes).getSeconds();
+                        long minutes = remainingTime.toMinutes();
+                        long seconds = remainingTime.minusMinutes(minutes).getSeconds();
                         remainingTimeLabel.setText(String.format("Remaining Time: %02d:%02d", minutes, seconds));
                     });
                     Thread.sleep(1000); // Wait for 1 second before updating again

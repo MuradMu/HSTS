@@ -1,4 +1,5 @@
 package il.cshaifasweng.HSTS.client;
+
 import il.cshaifasweng.HSTS.entities.*;
 import il.cshaifasweng.HSTS.entities.*;
 import javafx.application.Platform;
@@ -23,27 +24,28 @@ import java.util.*;
 public class EditExamController implements Initializable {
     private ShowExamsController PreviousController;
     private Teacher teacher;
-    private Exam exam;
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private TableView<Question> QuestionTable;
+    private TableView<Question> questionTable;
     @FXML
-    private TextField ExamTime;
+    private TextField time_minutes;
     @FXML
-    private ChoiceBox<Course> ChooseCourseBox;
+    private ChoiceBox<Course> courseChoiceBox;
     @FXML
-    private TextField TeacherDiscription;
+    private TextField teacher_discription;
     @FXML
-    private TextField StudentDiscription;
-    private List<Question> Questions = new ArrayList<>();
+    private TextField student_discription;
+    private List<Question> questions = new ArrayList<>();
 
-    private List<Question> ListOfSelectedQuestions = new ArrayList<>();
+    private List<Question> selectedQuestions = new ArrayList<>();
+
+    private Exam exam;
     public void initializee() {
-        List<Course> TeacherCourses = teacher.getCourses();
-        ObservableList<Course> CoursesList = FXCollections.observableArrayList(TeacherCourses);
-        ChooseCourseBox.setItems(CoursesList);
-        ChooseCourseBox.setConverter(new StringConverter<Course>() {
+        List<Course> teacherCourses = teacher.getCourses();
+        ObservableList<Course> courseList = FXCollections.observableArrayList(teacherCourses);
+        courseChoiceBox.setItems(courseList);
+        courseChoiceBox.setConverter(new StringConverter<Course>() {
             @Override
             public String toString(Course course) {
                 if (course == null) {
@@ -51,34 +53,36 @@ public class EditExamController implements Initializable {
                 }
                 return course.getCourse_name();
             }
+
             @Override
             public Course fromString(String string) {
                 // Not used in this case
                 return null;
             }
         });
-        TextFormatter<Integer> formatter = new TextFormatter<>(new IntegerStringConverter(), 0, c -> c.getControlNewText().matches("\\d*") ? c : null);
-        ExamTime.setTextFormatter(formatter);
+        TextFormatter<Integer> formatter = new TextFormatter<>(new IntegerStringConverter(), 0,
+                c -> c.getControlNewText().matches("\\d*") ? c : null);
+        time_minutes.setTextFormatter(formatter);
         ObservableList<Question> questionsForTeacher = FXCollections.observableArrayList();
-        List<Question> QuestionList = teacher.getTeacherQuestionsList();
-        if (!QuestionList.isEmpty()) {
-            questionsForTeacher.addAll(QuestionList);
-            Questions.addAll(QuestionList);
+        List<Question> questionList = teacher.getTeacherQuestionsList();
+        if (!questionList.isEmpty()) {
+            questionsForTeacher.addAll(questionList);
+            questions.addAll(questionList);
         }
         for(Question question : exam.getQuestions()){
-            for(Question question1 : Questions){
+            for(Question question1 : questions){
                 if(question1.getIdNum() == question.getIdNum()){
                     question1.setSelected(true);
                     question1.setPoints(exam.getQuestionPoints().get(question));
-                    ListOfSelectedQuestions.add(question1);
+                    selectedQuestions.add(question1);
                 }
             }
         }
-        ChooseCourseBox.setValue(exam.getCourse());
-        ExamTime.setText(Integer.toString(exam.getTime()));
-        QuestionTable.setItems(questionsForTeacher);
-        TeacherDiscription.setText(exam.getDescription_Teacher());
-        StudentDiscription.setText(exam.getDescription_Student());
+        courseChoiceBox.setValue(exam.getCourse());
+        time_minutes.setText(Integer.toString(exam.getTime()));
+        questionTable.setItems(questionsForTeacher);
+        teacher_discription.setText(exam.getDescription_Teacher());
+        student_discription.setText(exam.getDescription_Student());
     }
 
     @FXML
@@ -87,11 +91,11 @@ public class EditExamController implements Initializable {
         int sum=0;
         int points;
         boolean flag = true;
-        if(ListOfSelectedQuestions.isEmpty()){
+        if(selectedQuestions.isEmpty()){
             EventBus.getDefault().post(new ErrorMsgEvent("No Questions were selected!"));
             flag = false;
         }else{
-            for(Question question : ListOfSelectedQuestions){
+            for(Question question : selectedQuestions){
                 if(question.isSelected()){
                     points = question.getPoints();
                     if(points == 0){
@@ -111,18 +115,18 @@ public class EditExamController implements Initializable {
             }
         }
         if(flag){
-            int time = Integer.parseInt(ExamTime.getText());
+            int time = Integer.parseInt(time_minutes.getText());
             if(time > 0){
-                Course selectedCourse = ChooseCourseBox.getValue();
+                Course selectedCourse = courseChoiceBox.getValue();
                 if (selectedCourse != null) {
                     //Create the exam and send it to the server.
                     Map<Question, Integer> questionPoints = new HashMap<>();
-                    for(Question question : ListOfSelectedQuestions){
+                    for(Question question : selectedQuestions){
                         questionPoints.put(question, question.getPoints());
                     }
-                    String dis1 = TeacherDiscription.getText();
-                    String dis2 = StudentDiscription.getText();
-                    Exam exam = new Exam(teacher,selectedCourse,ListOfSelectedQuestions, time, questionPoints,dis1,dis2);
+                    String dis1 = teacher_discription.getText();
+                    String dis2 = student_discription.getText();
+                    Exam exam = new Exam(teacher,selectedCourse,selectedQuestions, time, questionPoints,dis1,dis2);
                     teacher.removeExam(exam);
                     selectedCourse.removeExam(exam);
                     MsgUpdateExam msg = new MsgUpdateExam("#EditExam", exam);
@@ -184,9 +188,9 @@ public class EditExamController implements Initializable {
                     Question question = getTableRow().getItem();
                     boolean selected = !question.isSelected();
                     if (selected) {
-                        ListOfSelectedQuestions.add(question);
+                        selectedQuestions.add(question);
                     } else {
-                        ListOfSelectedQuestions.remove(question);
+                        selectedQuestions.remove(question);
                     }
                     question.setSelected(selected);
                     updateButtonState(selected);
@@ -267,7 +271,7 @@ public class EditExamController implements Initializable {
                 }
             };
         });
-        QuestionTable.getColumns().addAll(selectCol, pointsColumn,questionNumCol, questionCol, aCol, bCol, cCol, dCol, answerCol);
+        questionTable.getColumns().addAll(selectCol, pointsColumn,questionNumCol, questionCol, aCol, bCol, cCol, dCol, answerCol);
         EventBus.getDefault().register(this);
     }
 

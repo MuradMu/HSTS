@@ -32,34 +32,36 @@ public class AddQuestionController implements Initializable{
     private Stage stage;
     private Teacher teacher;
     @FXML
-    private Button AddQuestionButton;
-
-    @FXML
-    private TextField Answer_A;
-
-    @FXML
-    private TextField Answer_B;
-
-    @FXML
-    private TextField Answer_C;
-
-    @FXML
-    private TextField Answer_D;
-
-    @FXML
-    private ChoiceBox<String> CorrectAnswerBox;
-
-    @FXML
-    private TableView<Question> QuestionTable;
-
-    @FXML
     private TextField QuestionText;
+
+    @FXML
+    private TextField A;
+
+    @FXML
+    private TextField B;
+
+    @FXML
+    private TextField C;
+
+    @FXML
+    private TextField D;
+
+//    @FXML
+//    private TextField AnswerChar; // todo remove
+    @FXML
+    private ChoiceBox<String> answerChoiceBox;
+
+    @FXML
+    private VBox coursesVBox = new VBox();
+
+    @FXML
+    private TableView<Question> questionTable;
 
     private TableColumn<Question, Void> editCol;
     private List<Question> questions = new ArrayList<>();
 
     public void updateLIST() {
-        QuestionTable.refresh();
+        questionTable.refresh();
     }
     public void initializee() {
         ObservableList<Question> QuestionsForTeacher = FXCollections.observableArrayList();
@@ -80,7 +82,7 @@ public class AddQuestionController implements Initializable{
         dCol.setCellValueFactory(new PropertyValueFactory<>("answerD"));
         answerCol.setCellValueFactory(new PropertyValueFactory<>("correctAnswer"));
 
-        QuestionTable.getColumns().addAll(
+        questionTable.getColumns().addAll(
                 questionNumCol, questionCol, aCol, bCol, cCol, dCol, answerCol
         );
 
@@ -94,7 +96,7 @@ public class AddQuestionController implements Initializable{
             }
         }
 
-        QuestionTable.setItems(QuestionsForTeacher);// this should show the questions
+        questionTable.setItems(QuestionsForTeacher);// this should show the questions
 
         // Create the edit column
         editCol = new TableColumn<>("Edit");
@@ -103,7 +105,7 @@ public class AddQuestionController implements Initializable{
         editCol.setCellFactory(createEditButtonCellFactory());
 
         // Add the edit column to the table
-        QuestionTable.getColumns().add(editCol);
+        questionTable.getColumns().add(editCol);
     }
     private Callback<TableColumn<Question, Void>, TableCell<Question, Void>> createEditButtonCellFactory() {
         return new Callback<>() {
@@ -158,29 +160,29 @@ public class AddQuestionController implements Initializable{
         String QuestionTxt;
         List<String> answers = new ArrayList<>();
         String correctAnswer;
-        answers.add(Answer_A.getText());
-        answers.add(Answer_B.getText());
-        answers.add(Answer_C.getText());
-        answers.add(Answer_D.getText());
+        answers.add(A.getText());
+        answers.add(B.getText());
+        answers.add(C.getText());
+        answers.add(D.getText());
         QuestionTxt = QuestionText.getText();
-        correctAnswer = CorrectAnswerBox.getValue();
+        correctAnswer = answerChoiceBox.getValue();
         Question question = new Question(QuestionTxt, answers, correctAnswer,teacher);
         QuestionMsg msg1 = new QuestionMsg("#AddQuestion", question, teacher);
         SimpleClient.getClient().sendToServer(msg1);
     }
     @Subscribe
     public void onReceivingQuestionEvent(ReceivingQuestionEvent message){
-        Answer_A.setText("");
-        Answer_B.setText("");
-        Answer_C.setText("");
-        Answer_D.setText("");
+        A.setText("");
+        B.setText("");
+        C.setText("");
+        D.setText("");
         QuestionText.setText("");
-        Platform.runLater(() -> CorrectAnswerBox.setValue(null));
+        Platform.runLater(() -> answerChoiceBox.setValue(null));
         Question q = message.getMessage().getQuestion();
         teacher.addQuestion(q);
-        QuestionTable.getItems().add(q);
-        QuestionTable.refresh();
-        // setTeacher(message.getMessage().getTeacherWhoCreate());
+        questionTable.getItems().add(q);
+        questionTable.refresh();
+       // setTeacher(message.getMessage().getTeacherWhoCreate());
     }
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;

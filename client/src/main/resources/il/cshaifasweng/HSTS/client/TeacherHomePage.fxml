@@ -5,18 +5,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.TeacherHomePageController">
+<AnchorPane prefHeight="415.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.TeacherHomePageController">
    <children>
-      <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="28.0" prefHeight="54.0" prefWidth="574.0" styleClass="label" text="Label" textAlignment="CENTER">
+      <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="32.0" prefHeight="54.0" prefWidth="574.0" styleClass="label" text="Label" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="ExecutedExamsButton" layoutX="237.0" layoutY="246.0" mnemonicParsing="false" onAction="#ShowExecutedExams" prefHeight="26.0" prefWidth="127.0" text="Executed Exams" />
-      <Button fx:id="ShowExamsButton" layoutX="237.0" layoutY="200.0" mnemonicParsing="false" onAction="#Show_Exams" prefHeight="26.0" prefWidth="127.0" text="Show Exams" />
-      <Button fx:id="create_exam" layoutX="237.0" layoutY="152.0" mnemonicParsing="false" onAction="#create_exam" prefHeight="26.0" prefWidth="127.0" text="Create Exam" />
-      <Button fx:id="addQuestionButton" layoutX="237.0" layoutY="102.0" mnemonicParsing="false" onAction="#AddQuestion" prefHeight="26.0" prefWidth="127.0" text="addQuestion" />
-      <Button fx:id="details" layoutX="230.0" layoutY="293.0" mnemonicParsing="false" onAction="#showDetails" prefHeight="42.0" prefWidth="141.0" text="Details">
+      <Button fx:id="ExecutedExamsButton" layoutX="207.0" layoutY="275.0" mnemonicParsing="false" onAction="#ShowExecutedExams" prefHeight="48.0" prefWidth="168.0" text="Executed Exams" />
+      <Button fx:id="ShowExamsButton" layoutX="207.0" layoutY="212.0" mnemonicParsing="false" onAction="#Show_Exams" prefHeight="48.0" prefWidth="168.0" text="Show Exams" />
+      <Button fx:id="create_exam" layoutX="207.0" layoutY="152.0" mnemonicParsing="false" onAction="#create_exam" prefHeight="48.0" prefWidth="168.0" text="Create Exam" />
+      <Button fx:id="addQuestionButton" layoutX="207.0" layoutY="96.0" mnemonicParsing="false" onAction="#AddQuestion" prefHeight="48.0" prefWidth="168.0" text="addQuestion" />
+      <Button fx:id="details" layoutX="207.0" layoutY="329.0" mnemonicParsing="false" onAction="#showDetails" prefHeight="48.0" prefWidth="168.0" text="Details">
          <font>
             <Font size="29.0" />
          </font>

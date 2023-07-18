@@ -25,9 +25,9 @@ import java.util.ResourceBundle;
 public class ShowExecutedExamsController implements Initializable {
     @FXML
     private AnchorPane rootPane;
-    private Teacher teacher;
     @FXML
     private TableView<ExamSubmittion> ExamsTable;
+    private Teacher teacher;
     private List<ExamSubmittion> executedExams;
 
     public void setTeacher(Teacher teacher) {

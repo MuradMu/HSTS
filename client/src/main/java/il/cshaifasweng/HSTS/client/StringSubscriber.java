@@ -1,15 +1,16 @@
 package il.cshaifasweng.HSTS.client;
 
 import org.greenrobot.eventbus.Subscribe;
+
 public class StringSubscriber {
-    private String msg;
+    private String receivedMSG;
     @Subscribe
     public void handleMSG(String msg) {
         // Handle the received student list
-        this.msg = msg;
+        this.receivedMSG = msg;
     }
     public StringSubscriber() {
-        this.msg = "";
+        this.receivedMSG = "null";
     }
-    public String getReceivedMSG(){return this.msg;}
+    public String getReceivedMSG(){return this.receivedMSG;}
 }

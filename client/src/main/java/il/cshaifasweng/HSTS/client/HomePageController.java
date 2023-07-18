@@ -22,14 +22,16 @@ public class HomePageController {
 	private EventBus eventBus;
 	//private StudentListSubscriber subscriber;
 	@FXML
-	private TextField usernamefield;
+	private TextField usernameField;
 
 	@FXML
-	private PasswordField passwordfield;
+	private PasswordField passwordField;
 
 	@FXML
 	private ImageView eye;
+
 	private App app;
+
 	@FXML
 	void sendWarning(ActionEvent event) {
 		try {
@@ -38,6 +40,21 @@ public class HomePageController {
 			showAlert("Error", "Failed to send warning: " + e.getMessage());
 		}
 	}
+
+    /*@FXML
+	void ClientProfileLoad(ActionEvent event) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("clientHomePage.fxml"));
+			AnchorPane newScene = loader.load();
+
+			Stage currentStage = App.getStage();
+			Scene scene = new Scene(newScene);
+			currentStage.setTitle("Client Home Page");
+			currentStage.setScene(scene);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}*/
 
 	private void showAlert(String title, String message) {
 		// Display an alert dialog to the user
@@ -110,7 +127,7 @@ public class HomePageController {
 		//EventBus.getDefault().register(this);
 		try {
 			//String string= new String("#LogInAttempt");
-			MsgToLogIn msg = new MsgToLogIn("#LogInAttempt",passwordfield.getText(),usernamefield.getText());
+			MsgToLogIn msg = new MsgToLogIn("#LogInAttempt",passwordField.getText(),usernameField.getText() ) ;
 
 			//Thread.sleep(500)
 			SimpleClient.getClient().sendToServer(msg);

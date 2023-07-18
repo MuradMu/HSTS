@@ -45,23 +45,24 @@ public class ShowExamsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         EventBus.getDefault().register(this);
-        TableColumn<Exam, Integer> Exam_Id_Colum = new TableColumn<>("ID");
-        TableColumn<Exam, String> Course_Id_Colum = new TableColumn<>("Course ID");
-        TableColumn<Exam, String> Teacher_Id_Colum = new TableColumn<>("Teacher ID");
-        TableColumn<Exam, Integer> Time_Colum = new TableColumn<>("Time");
-        TableColumn<Exam, Exam> Show_Colum = new TableColumn<>("Show");
-        TableColumn<Exam, Exam> Edit_Colum = new TableColumn<>("Edit");
+        TableColumn<Exam, Integer> ExamIDCol = new TableColumn<>("ID");
+        TableColumn<Exam, String> CourseIDCol = new TableColumn<>("Course ID");
+        TableColumn<Exam, String> TeacherIDCol = new TableColumn<>("Teacher ID");
+        TableColumn<Exam, Integer> TimeCol = new TableColumn<>("Time");
+        TableColumn<Exam, Exam> ShowButtonCol = new TableColumn<>("Show");
+        TableColumn<Exam, Exam> EditButtonCol = new TableColumn<>("Edit");
 
-        Exam_Id_Colum.setCellValueFactory(new PropertyValueFactory<>("id_num"));
-        Course_Id_Colum.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourse().getId()));
-        Teacher_Id_Colum.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTeacher().getId()));
-        Time_Colum.setCellValueFactory(new PropertyValueFactory<>("time"));
-        Show_Colum.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue()));
-        Show_Colum.setCellFactory(param -> new TableCell<Exam, Exam>() {
-            private final Button ShowButton = new Button("Show");
+        ExamIDCol.setCellValueFactory(new PropertyValueFactory<>("id_num"));
+        CourseIDCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourse().getId()));
+        TeacherIDCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTeacher().getId()));
+        TimeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
+
+        ShowButtonCol.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue()));
+        ShowButtonCol.setCellFactory(param -> new TableCell<Exam, Exam>() {
+            private final Button showButton = new Button("Show");
 
             {
-                ShowButton.setOnAction(event -> {
+                showButton.setOnAction(event -> {
                     Exam exam = getTableRow().getItem();
                     if (exam != null) {
                         // Code to handle the "Show" button action for the specific exam
@@ -76,13 +77,13 @@ public class ShowExamsController implements Initializable {
                 if (empty || exam == null) {
                     setGraphic(null);
                 } else {
-                    setGraphic(ShowButton);
+                    setGraphic(showButton);
                 }
             }
         });
 
-        Edit_Colum.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue()));
-        Edit_Colum.setCellFactory(param -> new TableCell<Exam, Exam>() {
+        EditButtonCol.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue()));
+        EditButtonCol.setCellFactory(param -> new TableCell<Exam, Exam>() {
             private final Button showButton = new Button("Edit");
 
             {
@@ -106,7 +107,7 @@ public class ShowExamsController implements Initializable {
             }
         });
 
-        ExamsTable.getColumns().addAll(Exam_Id_Colum, Course_Id_Colum, Teacher_Id_Colum, Time_Colum, Show_Colum, Edit_Colum);
+        ExamsTable.getColumns().addAll(ExamIDCol, CourseIDCol, TeacherIDCol, TimeCol, ShowButtonCol, EditButtonCol);
     }
 
     public void ShowExam(Exam exam){

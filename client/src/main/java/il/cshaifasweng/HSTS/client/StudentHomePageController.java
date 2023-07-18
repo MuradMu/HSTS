@@ -1,5 +1,4 @@
 package il.cshaifasweng.HSTS.client;
-import il.cshaifasweng.HSTS.entities.Course;
 import javafx.scene.control.Label;
 
 import il.cshaifasweng.HSTS.entities.MsgGetGrades;
@@ -25,8 +24,8 @@ public class StudentHomePageController implements Initializable{ //pay attention
     private User user;
     private StudentGradesController NextController;
     @FXML
-    private Label StudentName;
-    private boolean IsExamTake = false;
+    private Label nameLabel;
+    private boolean take_exam = false;
 
     public void showDetails(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentDetails.fxml"));
@@ -59,14 +58,33 @@ public class StudentHomePageController implements Initializable{ //pay attention
         }
     }
 
+    public void showGrades(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentGrades.fxml"));
+        try {
+            Stage currentStage = new Stage();
+            AnchorPane newScene = loader.load();
+            Scene scene = new Scene(newScene);  // Set the loaded AnchorPane as the root of the scene
+            currentStage.setTitle(user.getFullName() + " Grades");
+            currentStage.setScene(scene);
+            StudentGradesController controller = loader.getController();
+            NextController = controller;
+            MsgGetGrades msg = new MsgGetGrades("#GetGrades", (Student) user);
+            SimpleClient.getClient().sendToServer(msg);
+//            controller.setStudent((Student) user);
+            currentStage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void setUser(User user){
         this.user=user;
-        StudentName.setText(user.getFullName());
+        nameLabel.setText(user.getFullName());
     }
 
     public void TakeExam(ActionEvent actionEvent) {
-        if(!IsExamTake){
-            IsExamTake = true;
+        if(!take_exam){
+            take_exam = true;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentTakeExam.fxml"));
             try {
                 Stage currentStage = new Stage();
@@ -99,6 +117,6 @@ public class StudentHomePageController implements Initializable{ //pay attention
     }
 
     public void setTake_exam(boolean take_exam) {
-        this.IsExamTake = take_exam;
+        this.take_exam = take_exam;
     }
 }

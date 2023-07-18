@@ -3,7 +3,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import il.cshaifasweng.HSTS.entities.Course;
 import il.cshaifasweng.HSTS.entities.Grade;
 import il.cshaifasweng.HSTS.entities.Student;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -16,10 +15,10 @@ public class StudentGradesController  implements Initializable {
     private Student student;
 
     @FXML
-    private Label CurrentStudentName;
+    private Label studentNameLabel;
 
     @FXML
-    private TableView<Grade> StudentGradesTable;
+    private TableView<Grade> studentTable;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,33 +40,33 @@ public class StudentGradesController  implements Initializable {
                 }
             }
         });
-        TableColumn<Course, String> Course_Name_Column = new TableColumn<>("Course Name");
-        Course_Name_Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourse_name()));
+        TableColumn<Grade, String> courseNameColumn = new TableColumn<>("Course Name");
+        courseNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourse_name()));
 
         TableColumn<Grade, Integer> gradeColumn = new TableColumn<>("Grade");
         gradeColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getGrade()).asObject());
 
-        StudentGradesTable.getColumns().addAll(GradeNumColumn, gradeColumn);
+        studentTable.getColumns().addAll(GradeNumColumn, courseNameColumn, gradeColumn);
     }
 
     private void populateTable() {
         List<Grade> grades = student.getGrades();
 
-        StudentGradesTable.getItems().addAll(grades);
+        studentTable.getItems().addAll(grades);
     }
 
     public void setStudent(Student student) {
         this.student = student;
-        //this.CurrentStudentName.setText(student.getStudentName());
+        this.studentNameLabel.setText(student.getStudentName());
         initializeTable();
         populateTable();
     }
     public void updateGradeInTable(Grade updatedGrade) {
         // Find the grade in the table and update its values
-        for (Grade grade : StudentGradesTable.getItems()) {
+        for (Grade grade : studentTable.getItems()) {
             if (grade.getId() == updatedGrade.getId()) {
                 grade = updatedGrade;
-                StudentGradesTable.refresh();
+                studentTable.refresh();
                 break;
             }
         }
