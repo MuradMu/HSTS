@@ -1,25 +1,23 @@
 package il.cshaifasweng.HSTS.client;
 
 import il.cshaifasweng.HSTS.entities.*;
-import il.cshaifasweng.HSTS.entities.*;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.Console;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -27,39 +25,51 @@ public class StudentExamPageController implements Initializable {
     private Student student;
     private Exam exam;
     private Map<Question, String> answersMap = new HashMap<>();
+
     @FXML
-    private TableView<Question> questionTable;
+    private AnchorPane rootPane;
+    @FXML
+    private Label questionLabel;
+    @FXML
+    private Button choiceAButton;
+    @FXML
+    private Button choiceBButton;
+    @FXML
+    private Button choiceCButton;
+    @FXML
+    private Button choiceDButton;
     @FXML
     private Button submitButton;
     @FXML
-    private Label remainingTimeLabel; // Add this label to your FXML file
-    @FXML TextArea teacherNotesField;
+    private Label remainingTimeLabel;
+    @FXML
+    private Label teacherNotesLabel;
+    @FXML
+    private TextArea teacherNotesField;
 
     private LocalTime startTime = null;
     private Duration duration;
+    private boolean isExamSubmitted = false;
     private boolean isExamSubmitted1 = false;
-    private boolean isExamSubmitted2 = false;
-    private StudentHomePageController PPcontrolelr;
+    private StudentHomePageController PPcontroller;
+    private int currentQuestionIndex = 0;
 
-    public void setPPcontrolelr(StudentHomePageController PPcontrolelr) {
-        this.PPcontrolelr = PPcontrolelr;
+    public void setPPcontroller(StudentHomePageController PPcontroller) {
+        this.PPcontroller = PPcontroller;
     }
 
     @Subscribe
     public void onExamSubmitEvent(ExamSubmitEvent examSubmitEvent) {
-        if (!isExamSubmitted2) {
-            PPcontrolelr.setTake_exam(false);
-            isExamSubmitted2 = true;
+        if (!isExamSubmitted1) {
+            PPcontroller.setTake_exam(false);
+            isExamSubmitted1 = true;
             MsgExamSubmittion msg = examSubmitEvent.getMessage();
             if (msg.getRequest().equals("#ExamSubmittedSuccessfully")) {
                 Platform.runLater(() -> {
-                    Stage currentStage = (Stage) questionTable.getScene().getWindow();
+                    Stage currentStage = (Stage) choiceAButton.getScene().getWindow();
                     currentStage.close();
                     Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                            String.format("Message: \nData: %s\nTimestamp: %s\n",
-                                    "Exam Submitted Successfully",
-                                    LocalTime.now())
-                    );
+                            "Exam Submitted Successfully");
                     alert.setTitle("Alert!");
                     alert.setHeaderText("Message:");
                     alert.show();
@@ -72,66 +82,21 @@ public class StudentExamPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         EventBus.getDefault().register(this);
-        TableColumn<Question, Integer> questionNumCol = new TableColumn<>("Question_num");
-        TableColumn<Question, String> questionCol = new TableColumn<>("Question");
-        TableColumn<Question, String> aCol = new TableColumn<>("A");//manual set-> the header label is set to "A",
-        TableColumn<Question, String> bCol = new TableColumn<>("B");
-        TableColumn<Question, String> cCol = new TableColumn<>("C");
-        TableColumn<Question, String> dCol = new TableColumn<>("D");
-
-        questionNumCol.setCellValueFactory(new PropertyValueFactory<>("IdNum"));
-        questionCol.setCellValueFactory(new PropertyValueFactory<>("questionText"));
-        aCol.setCellValueFactory(new PropertyValueFactory<>("answerA"));
-        bCol.setCellValueFactory(new PropertyValueFactory<>("answerB"));
-        cCol.setCellValueFactory(new PropertyValueFactory<>("answerC"));
-        dCol.setCellValueFactory(new PropertyValueFactory<>("answerD"));
-
-        TableColumn<Question, String> answerChoiceCol = new TableColumn<>("Answer Choice");
-        answerChoiceCol.setPrefWidth(100); // Set the preferred width for the column
-
-        answerChoiceCol.setCellFactory(column -> {
-            return new TableCell<Question, String>() {
-                private final ChoiceBox<String> choiceBox = new ChoiceBox<>();
-
-                {
-                    choiceBox.getItems().addAll("A", "B", "C", "D");
-                    choiceBox.valueProperty().addListener((observable, oldValue, newValue) -> {
-                        // Update the corresponding question's answer choice property
-                        if (getTableRow() != null) {
-                            Question question = getTableRow().getItem();
-                            answersMap.put(question, newValue);
-                        }
-                    });
-                }
-
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty) {
-                        setGraphic(null);
-                    } else {
-                        choiceBox.setValue(item);
-                        setGraphic(choiceBox);
-                    }
-                }
-            };
-        });
-
-        questionTable.getColumns().addAll(
-                questionNumCol, questionCol, aCol, bCol, cCol, dCol, answerChoiceCol
-        );
         teacherNotesField.setEditable(false);
     }
 
-    public void SubmitExam(ActionEvent actionEvent) throws IOException {
-        if (!isExamSubmitted1) {
-            isExamSubmitted1 = true;
-            ExamSubmittion examSubmittion = new ExamSubmittion(student, exam, answersMap);
-            MsgExamSubmittion msg = new MsgExamSubmittion("#ExamSubmitted", examSubmittion);
-            SimpleClient.getClient().sendToServer(msg);
+    public void submitExam(ActionEvent actionEvent) {
+        if (!isExamSubmitted) {
+            isExamSubmitted = true;
+            ExamSubmittion examSubmission = new ExamSubmittion(student, exam, answersMap);
+            MsgExamSubmittion msg = new MsgExamSubmittion("#ExamSubmitted", examSubmission);
+            try {
+                SimpleClient.getClient().sendToServer(msg);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
-
     public void setParameters(Student student, Exam examToShare) {
         this.student = student;
         this.exam = examToShare;
@@ -160,19 +125,10 @@ public class StudentExamPageController implements Initializable {
         });
         remainingTimeThread.setDaemon(true); // Set the thread as daemon to stop it when the application exits
         remainingTimeThread.start();
-        ObservableList<Question> questions = FXCollections.observableArrayList();
-        List<Question> questionList = exam.getQuestions();
 
-        if (questionList.isEmpty()) {
-//            System.out.print("\nSystem check Q.list is empty : ");
-        } else {
-            for (Question question : questionList) {
-//                System.out.print("\nSystem check for Q.list: " + question.getQuestionText() + "\n");
-                questions.add(question);
-            }
-        }
-        questionTable.setItems(questions); // this should show the questions
+        showQuestion(examToShare.getQuestions().get(currentQuestionIndex)); // Show the first question initially
     }
+
     private Duration getRemainingTime() {
         LocalTime currentTime = LocalTime.now();
         LocalTime endTime = startTime.plus(duration);
@@ -181,14 +137,46 @@ public class StudentExamPageController implements Initializable {
         // Check if remaining time is 0 and trigger button press
         if (remainingTime.isZero() || remainingTime.isNegative()) {
             Platform.runLater(() -> {
-                try {
-                    SubmitExam(null); // Trigger button press
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    submitExam(null); // Trigger button press
             });
         }
 
         return remainingTime;
     }
+
+    private void showQuestion(Question question) {
+        questionLabel.setText(question.getQuestionText());
+        choiceAButton.setText("A. " + question.getAnswerA());
+        choiceBButton.setText("B. " + question.getAnswerB());
+        choiceCButton.setText("C. " + question.getAnswerC());
+        choiceDButton.setText("D. " + question.getAnswerD());
+    }
+
+    public void selectChoiceA(ActionEvent actionEvent) {
+        answersMap.put(exam.getQuestions().get(currentQuestionIndex), "A");
+    }
+
+    public void selectChoiceB(ActionEvent actionEvent) {
+        answersMap.put(exam.getQuestions().get(currentQuestionIndex), "B");
+    }
+
+    public void selectChoiceC(ActionEvent actionEvent) {
+        answersMap.put(exam.getQuestions().get(currentQuestionIndex), "C");
+    }
+
+    public void selectChoiceD(ActionEvent actionEvent) {
+        answersMap.put(exam.getQuestions().get(currentQuestionIndex), "D");
+    }
+
+    public void nextQuestion(ActionEvent actionEvent) {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < exam.getQuestions().size()) {
+            showQuestion(exam.getQuestions().get(currentQuestionIndex));
+        } else {
+            // All questions have been answered
+                submitExam(null); // Trigger button press
+        }
+    }
+
+
 }

@@ -254,311 +254,311 @@ public class ConnectToDatabase {
         Add_Course(s10, c1);
         Add_Course(s10, c2);
 
-//      List<String> answers = new ArrayList<>();
-//      String questionText = "Which of the following standard algorithms is not Dynamic Programming based.";
-//      String correctAns = "D";
-//      answers.add("Bellman–Ford Algorithm for single source shortest path");
-//      answers.add("Floyd Warshall Algorithm for all pairs shortest paths");
-//      answers.add("0-1 Knapsack problem");
-//      answers.add("Prim's Minimum Spanning Tree");
-//      Question q1 = new Question(questionText, answers, correctAns, t1);
-//      answers.clear();
-//
-//      questionText = "Which of the following is not true about comparison-based sorting algorithms?";
-//      correctAns = "D";
-//      answers.add("The minimum possible time complexity of a comparison-based sorting algorithm is O(n(log(n)) for a random input array");
-//      answers.add("Any comparison based sorting algorithm can be made stable by using position as a criteria when two elements are compared");
-//      answers.add("Counting Sort is not a comparison based sorting algorithm");
-//      answers.add("Heap Sort is not a comparison based sorting algorithm.");
-//      Question q2 = new Question(questionText, answers, correctAns, t1);
-//      answers.clear();
-//
-//      questionText = "Which of the following is not O(n^2)?";
-//      correctAns = "C";
-//      answers.add("(15) * n2");
-//      answers.add("n1.98");
-//      answers.add("n3/(sqrt(n))");
-//      answers.add("(20) * n2");
-//      Question q3 = new Question(questionText, answers, correctAns, t1);
-//      answers.clear();
-//
-//      questionText = "Which of the following is not a backtracking algorithm?";
-//      correctAns = "C";
-//      answers.add("Knight tour problem");
-//      answers.add("N queen problem");
-//      answers.add("Tower of hanoi");
-//      answers.add("M coloring problem");
-//      Question q4 = new Question(questionText, answers, correctAns, t1);
-//      answers.clear();
-//
-//      questionText = "In a complete k-ary tree, every internal node has exactly k children. The number of leaves in such a tree with n internal nodes is: ";
-//      correctAns = "C";
-//      answers.add("nk");
-//      answers.add("(n – 1) k+ 1");
-//      answers.add("n( k – 1) + 1");
-//      answers.add("n( k – 1)");
-//      Question q5 = new Question(questionText, answers, correctAns, t1);
-//      answers.clear();
-//
-//      questionText = "What is the time complexity of Floyd–Warshall algorithm to calculate all pair shortest path in a graph with n vertices?";
-//      correctAns = "D";
-//      answers.add("O(n2log(n))");
-//      answers.add("Theta(n2log(n))");
-//      answers.add("Theta(n4)");
-//      answers.add("Theta(n3)");
-//      Question q6 = new Question(questionText, answers, correctAns, t1);
-//      answers.clear();
-//
-//      questionText = "Which thing help people to understand the world?";
-//      correctAns = "A";
-//      answers.add("Symbol");
-//      answers.add("Language");
-//      answers.add("People");
-//      answers.add("Communication");
-//      Question q7 = new Question(questionText, answers, correctAns, t1);
-//      answers.clear();
-//
-//      questionText = "Cultural universal revolve around human survival such as";
-//      correctAns = "D";
-//      answers.add("Food");
-//      answers.add("Cloth");
-//      answers.add("Shelter");
-//      answers.add("All of above");
-//      Question q8 = new Question(questionText, answers, correctAns, t1);
-//      answers.clear();
-//
-//      questionText = "Marx' developed is the concept of";
-//      correctAns = "B";
-//      answers.add("True consciousness");
-//      answers.add("false consciousness");
-//      answers.add("Class consciousness");
-//      answers.add("class consciousness");
-//      Question q9 = new Question(questionText, answers, correctAns, t1);
-//      answers.clear();
-//
-//      questionText = "A culture standard for discerning what is good in society is";
-//      correctAns = "C";
-//      answers.add("Value");
-//      answers.add("Norms");
-//      answers.add("Belief");
-//      answers.add("Practice");
-//      Question q10 = new Question(questionText, answers, correctAns, t1);
-//      answers.clear();
-//
-//      questionText = "A society is created by humans and human interaction is known as";
-//      correctAns = "B";
-//      answers.add("Institutionalization");
-//      answers.add("Habitualization");
-//      answers.add("Socialization");
-//      answers.add("Capitalization");
-//      Question q11 = new Question(questionText, answers, correctAns, t2);
-//      answers.clear();
-//
-//      questionText = "What is the capital city of Afghanistan ?";
-//      correctAns = "C";
-//      answers.add("Tripoli");
-//      answers.add("Beijing");
-//      answers.add("Kabul");
-//      answers.add("Algiers");
-//      Question q12 = new Question(questionText, answers, correctAns, t2);
-//      answers.clear();
-//
-//      questionText = "What is the capital city of Algeria ?";
-//      correctAns = "C";
-//      answers.add("Tallinn");
-//      answers.add("Ankarea");
-//      answers.add("Algiers");
-//      answers.add("Ankara");
-//      Question q13 = new Question(questionText, answers, correctAns, t2);
-//      answers.clear();
-//
-//      questionText = "What is the capital city of Albania ?";
-//      correctAns = "D";
-//      answers.add("Thimphu");
-//      answers.add("Tripoli");
-//      answers.add("Sofia");
-//      answers.add("Tirana");
-//      Question q14 = new Question(questionText, answers, correctAns, t2);
-//      answers.clear();
-//
-//      questionText = "What is the capital city of Andorra ?";
-//      correctAns = "A";
-//      answers.add("Andorra la Vella");
-//      answers.add("Jakarta");
-//      answers.add("Tripoli");
-//      answers.add("Sofia");
-//      Question q15 = new Question(questionText, answers, correctAns, t2);
-//      answers.clear();
-//
-//      questionText = "What is the capital city of Antigua and Barbuda ?";
-//      correctAns = "C";
-//      answers.add("Canberra");
-//      answers.add("Barcelona");
-//      answers.add("Saint John's");
-//      answers.add("Dhaka");
-//      Question q16 = new Question(questionText, answers, correctAns, t2);
-//      answers.clear();
-//
-//      questionText = "Number of primitive data types in Java are?";
-//      correctAns = "C";
-//      answers.add("6");
-//      answers.add("7");
-//      answers.add("8");
-//      answers.add("9");
-//      Question q17 = new Question(questionText, answers, correctAns, t2);
-//      answers.clear();
-//
-//      questionText = "What is the size of float and double in java?";
-//      correctAns = "A";
-//      answers.add("32 and 64");
-//      answers.add("32 and 32");
-//      answers.add("64 and 64");
-//      answers.add("64 and 32");
-//      Question q18 = new Question(questionText, answers, correctAns, t2);
-//      answers.clear();
-//
-//      questionText = "Automatic type conversion is possible in which of the possible cases?";
-//      correctAns = "B";
-//      answers.add("Byte to int");
-//      answers.add("Int to Long");
-//      answers.add("Long to int");
-//      answers.add("Short to int");
-//      Question q19 = new Question(questionText, answers, correctAns, t2);
-//      answers.clear();
-//
-//      questionText = "\n" +
-//              "Select the valid statement.";
-//      correctAns = "B";
-//      answers.add("char[] ch = new char(5)");
-//      answers.add("char[] ch = new char[5]");
-//      answers.add("char[] ch = new char()");
-//      answers.add("char[] ch = new char[]");
-//      Question q20 = new Question(questionText, answers, correctAns, t2);
-//      answers.clear();
-//
-//      questionText = "When an array is passed to a method, what does the method receive?";
-//      correctAns = "A";
-//      answers.add("The reference of the array");
-//      answers.add("A copy of the array");
-//      answers.add("Length of the array");
-//      answers.add("Copy of first element");
-//      Question q21 = new Question(questionText, answers, correctAns, t3);
-//      answers.clear();
-//
-//      questionText = "Select the valid statement to declare and initialize an array.";
-//      correctAns = "D";
-//      answers.add("int[] A = {}");
-//      answers.add("int[] A = (1, 2, 3)");
-//      answers.add("int[][] A = {1,2,3}");
-//      answers.add("int[] A = {1, 2, 3}");
-//      Question q22 = new Question(questionText, answers, correctAns, t3);
-//      answers.clear();
-//
-//      questionText = "What is the main function of the command interpreter?";
-//      correctAns = "C";
-//      answers.add("to provide the interface between the API and application program");
-//      answers.add("to handle the files in the operating system");
-//      answers.add("to get and execute the next user-specified command");
-//      answers.add("none of the mentioned");
-//      Question q23 = new Question(questionText, answers, correctAns, t3);
-//      answers.clear();
-//
-//      questionText = "In Operating Systems, which of the following is/are CPU scheduling algorithms?";
-//      correctAns = "D";
-//      answers.add("Priority");
-//      answers.add("Round Robin");
-//      answers.add("Shortest Job First");
-//      answers.add("All of the mentioned");
-//      Question q24 = new Question(questionText, answers, correctAns, t3);
-//      answers.clear();
-//
-//      questionText = "To access the services of the operating system, the interface is provided by the ___________";
-//      correctAns = "B";
-//      answers.add("Library");
-//      answers.add("System calls");
-//      answers.add("Assembly instructions");
-//      answers.add("API");
-//      Question q25 = new Question(questionText, answers, correctAns, t3);
-//      answers.clear();
-//
-//      questionText = " CPU scheduling is the basis of ___________";
-//      correctAns = "A";
-//      answers.add("multiprogramming operating systems");
-//      answers.add("larger memory sized systems");
-//      answers.add("multiprocessor systems");
-//      answers.add("none of the mentioned");
-//      Question q26 = new Question(questionText, answers, correctAns, t3);
-//      answers.clear();
-//
-//      questionText = "Which one of the following is not true?";
-//      correctAns = "B";
-//      answers.add("kernel remains in the memory during the entire computer session");
-//      answers.add(" kernel is made of various modules which can not be loaded in running operating system");
-//      answers.add("kernel is the first part of the operating system to load into memory during booting");
-//      answers.add(" kernel is the program that constitutes the central core of the operating system");
-//      Question q27 = new Question(questionText, answers, correctAns, t3);
-//      answers.clear();
-//
-//      questionText = "Which one of the following errors will be handle by the operating system?";
-//      correctAns = "D";
-//      answers.add("lack of paper in printer");
-//      answers.add("connection failure in the network");
-//      answers.add("power failure");
-//      answers.add("all of the mentioned");
-//      Question q28 = new Question(questionText, answers, correctAns, t3);
-//      answers.clear();
-//
-//      questionText = "If a process fails, most operating system write the error information to a ______";
-//      correctAns = "C";
-//      answers.add("new file");
-//      answers.add("another running process");
-//      answers.add("log file");
-//      answers.add("none of the mentioned");
-//      Question q29 = new Question(questionText, answers, correctAns, t3);
-//      answers.clear();
-//
-//      questionText = "Where is the operating system placed in the memory?";
-//      correctAns = "A";
-//      answers.add("either low or high memory (depending on the location of interrupt vector)");
-//      answers.add("in the low memory");
-//      answers.add("in the high memory");
-//      answers.add("none of the mentioned");
-//      Question q30 = new Question(questionText, answers, correctAns, t3);
-//      answers.clear();
-//
-//
-//      AddQuestion2(q1);
-//      AddQuestion2(q2);
-//      AddQuestion2(q3);
-//      AddQuestion2(q4);
-//      AddQuestion2(q5);
-//      AddQuestion2(q6);
-//      AddQuestion2(q7);
-//      AddQuestion2(q8);
-//      AddQuestion2(q9);
-//      AddQuestion2(q10);
-//
-//      AddQuestion2(q11);
-//      AddQuestion2(q12);
-//      AddQuestion2(q13);
-//      AddQuestion2(q14);
-//      AddQuestion2(q15);
-//      AddQuestion2(q16);
-//      AddQuestion2(q17);
-//      AddQuestion2(q18);
-//      AddQuestion2(q19);
-//      AddQuestion2(q20);
-//
-//      AddQuestion2(q21);
-//      AddQuestion2(q22);
-//      AddQuestion2(q23);
-//      AddQuestion2(q24);
-//      AddQuestion2(q25);
-//      AddQuestion2(q26);
-//      AddQuestion2(q27);
-//      AddQuestion2(q28);
-//      AddQuestion2(q29);
-//      AddQuestion2(q30);
+      List<String> answers = new ArrayList<>();
+      String questionText = "Which of the following standard algorithms is not Dynamic Programming based.";
+      String correctAns = "D";
+      answers.add("Bellman–Ford Algorithm for single source shortest path");
+      answers.add("Floyd Warshall Algorithm for all pairs shortest paths");
+      answers.add("0-1 Knapsack problem");
+      answers.add("Prim's Minimum Spanning Tree");
+      Question q1 = new Question(questionText, answers, correctAns, t1);
+      answers.clear();
+
+      questionText = "Which of the following is not true about comparison-based sorting algorithms?";
+      correctAns = "D";
+      answers.add("The minimum possible time complexity of a comparison-based sorting algorithm is O(n(log(n)) for a random input array");
+      answers.add("Any comparison based sorting algorithm can be made stable by using position as a criteria when two elements are compared");
+      answers.add("Counting Sort is not a comparison based sorting algorithm");
+      answers.add("Heap Sort is not a comparison based sorting algorithm.");
+      Question q2 = new Question(questionText, answers, correctAns, t1);
+      answers.clear();
+
+      questionText = "Which of the following is not O(n^2)?";
+      correctAns = "C";
+      answers.add("(15) * n2");
+      answers.add("n1.98");
+      answers.add("n3/(sqrt(n))");
+      answers.add("(20) * n2");
+      Question q3 = new Question(questionText, answers, correctAns, t1);
+      answers.clear();
+
+      questionText = "Which of the following is not a backtracking algorithm?";
+      correctAns = "C";
+      answers.add("Knight tour problem");
+      answers.add("N queen problem");
+      answers.add("Tower of hanoi");
+      answers.add("M coloring problem");
+      Question q4 = new Question(questionText, answers, correctAns, t1);
+      answers.clear();
+
+      questionText = "In a complete k-ary tree, every internal node has exactly k children. The number of leaves in such a tree with n internal nodes is: ";
+      correctAns = "C";
+      answers.add("nk");
+      answers.add("(n – 1) k+ 1");
+      answers.add("n( k – 1) + 1");
+      answers.add("n( k – 1)");
+      Question q5 = new Question(questionText, answers, correctAns, t1);
+      answers.clear();
+
+      questionText = "What is the time complexity of Floyd–Warshall algorithm to calculate all pair shortest path in a graph with n vertices?";
+      correctAns = "D";
+      answers.add("O(n2log(n))");
+      answers.add("Theta(n2log(n))");
+      answers.add("Theta(n4)");
+      answers.add("Theta(n3)");
+      Question q6 = new Question(questionText, answers, correctAns, t1);
+      answers.clear();
+
+      questionText = "Which thing help people to understand the world?";
+      correctAns = "A";
+      answers.add("Symbol");
+      answers.add("Language");
+      answers.add("People");
+      answers.add("Communication");
+      Question q7 = new Question(questionText, answers, correctAns, t1);
+      answers.clear();
+
+      questionText = "Cultural universal revolve around human survival such as";
+      correctAns = "D";
+      answers.add("Food");
+      answers.add("Cloth");
+      answers.add("Shelter");
+      answers.add("All of above");
+      Question q8 = new Question(questionText, answers, correctAns, t1);
+      answers.clear();
+
+      questionText = "Marx' developed is the concept of";
+      correctAns = "B";
+      answers.add("True consciousness");
+      answers.add("false consciousness");
+      answers.add("Class consciousness");
+      answers.add("class consciousness");
+      Question q9 = new Question(questionText, answers, correctAns, t1);
+      answers.clear();
+
+      questionText = "A culture standard for discerning what is good in society is";
+      correctAns = "C";
+      answers.add("Value");
+      answers.add("Norms");
+      answers.add("Belief");
+      answers.add("Practice");
+      Question q10 = new Question(questionText, answers, correctAns, t1);
+      answers.clear();
+
+      questionText = "A society is created by humans and human interaction is known as";
+      correctAns = "B";
+      answers.add("Institutionalization");
+      answers.add("Habitualization");
+      answers.add("Socialization");
+      answers.add("Capitalization");
+      Question q11 = new Question(questionText, answers, correctAns, t2);
+      answers.clear();
+
+      questionText = "What is the capital city of Afghanistan ?";
+      correctAns = "C";
+      answers.add("Tripoli");
+      answers.add("Beijing");
+      answers.add("Kabul");
+      answers.add("Algiers");
+      Question q12 = new Question(questionText, answers, correctAns, t2);
+      answers.clear();
+
+      questionText = "What is the capital city of Algeria ?";
+      correctAns = "C";
+      answers.add("Tallinn");
+      answers.add("Ankarea");
+      answers.add("Algiers");
+      answers.add("Ankara");
+      Question q13 = new Question(questionText, answers, correctAns, t2);
+      answers.clear();
+
+      questionText = "What is the capital city of Albania ?";
+      correctAns = "D";
+      answers.add("Thimphu");
+      answers.add("Tripoli");
+      answers.add("Sofia");
+      answers.add("Tirana");
+      Question q14 = new Question(questionText, answers, correctAns, t2);
+      answers.clear();
+
+      questionText = "What is the capital city of Andorra ?";
+      correctAns = "A";
+      answers.add("Andorra la Vella");
+      answers.add("Jakarta");
+      answers.add("Tripoli");
+      answers.add("Sofia");
+      Question q15 = new Question(questionText, answers, correctAns, t2);
+      answers.clear();
+
+      questionText = "What is the capital city of Antigua and Barbuda ?";
+      correctAns = "C";
+      answers.add("Canberra");
+      answers.add("Barcelona");
+      answers.add("Saint John's");
+      answers.add("Dhaka");
+      Question q16 = new Question(questionText, answers, correctAns, t2);
+      answers.clear();
+
+      questionText = "Number of primitive data types in Java are?";
+      correctAns = "C";
+      answers.add("6");
+      answers.add("7");
+      answers.add("8");
+      answers.add("9");
+      Question q17 = new Question(questionText, answers, correctAns, t2);
+      answers.clear();
+
+      questionText = "What is the size of float and double in java?";
+      correctAns = "A";
+      answers.add("32 and 64");
+      answers.add("32 and 32");
+      answers.add("64 and 64");
+      answers.add("64 and 32");
+      Question q18 = new Question(questionText, answers, correctAns, t2);
+      answers.clear();
+
+      questionText = "Automatic type conversion is possible in which of the possible cases?";
+      correctAns = "B";
+      answers.add("Byte to int");
+      answers.add("Int to Long");
+      answers.add("Long to int");
+      answers.add("Short to int");
+      Question q19 = new Question(questionText, answers, correctAns, t2);
+      answers.clear();
+
+      questionText = "\n" +
+              "Select the valid statement.";
+      correctAns = "B";
+      answers.add("char[] ch = new char(5)");
+      answers.add("char[] ch = new char[5]");
+      answers.add("char[] ch = new char()");
+      answers.add("char[] ch = new char[]");
+      Question q20 = new Question(questionText, answers, correctAns, t2);
+      answers.clear();
+
+      questionText = "When an array is passed to a method, what does the method receive?";
+      correctAns = "A";
+      answers.add("The reference of the array");
+      answers.add("A copy of the array");
+      answers.add("Length of the array");
+      answers.add("Copy of first element");
+      Question q21 = new Question(questionText, answers, correctAns, t3);
+      answers.clear();
+
+      questionText = "Select the valid statement to declare and initialize an array.";
+      correctAns = "D";
+      answers.add("int[] A = {}");
+      answers.add("int[] A = (1, 2, 3)");
+      answers.add("int[][] A = {1,2,3}");
+      answers.add("int[] A = {1, 2, 3}");
+      Question q22 = new Question(questionText, answers, correctAns, t3);
+      answers.clear();
+
+      questionText = "What is the main function of the command interpreter?";
+      correctAns = "C";
+      answers.add("to provide the interface between the API and application program");
+      answers.add("to handle the files in the operating system");
+      answers.add("to get and execute the next user-specified command");
+      answers.add("none of the mentioned");
+      Question q23 = new Question(questionText, answers, correctAns, t3);
+      answers.clear();
+
+      questionText = "In Operating Systems, which of the following is/are CPU scheduling algorithms?";
+      correctAns = "D";
+      answers.add("Priority");
+      answers.add("Round Robin");
+      answers.add("Shortest Job First");
+      answers.add("All of the mentioned");
+      Question q24 = new Question(questionText, answers, correctAns, t3);
+      answers.clear();
+
+      questionText = "To access the services of the operating system, the interface is provided by the ___________";
+      correctAns = "B";
+      answers.add("Library");
+      answers.add("System calls");
+      answers.add("Assembly instructions");
+      answers.add("API");
+      Question q25 = new Question(questionText, answers, correctAns, t3);
+      answers.clear();
+
+      questionText = " CPU scheduling is the basis of ___________";
+      correctAns = "A";
+      answers.add("multiprogramming operating systems");
+      answers.add("larger memory sized systems");
+      answers.add("multiprocessor systems");
+      answers.add("none of the mentioned");
+      Question q26 = new Question(questionText, answers, correctAns, t3);
+      answers.clear();
+
+      questionText = "Which one of the following is not true?";
+      correctAns = "B";
+      answers.add("kernel remains in the memory during the entire computer session");
+      answers.add(" kernel is made of various modules which can not be loaded in running operating system");
+      answers.add("kernel is the first part of the operating system to load into memory during booting");
+      answers.add(" kernel is the program that constitutes the central core of the operating system");
+      Question q27 = new Question(questionText, answers, correctAns, t3);
+      answers.clear();
+
+      questionText = "Which one of the following errors will be handle by the operating system?";
+      correctAns = "D";
+      answers.add("lack of paper in printer");
+      answers.add("connection failure in the network");
+      answers.add("power failure");
+      answers.add("all of the mentioned");
+      Question q28 = new Question(questionText, answers, correctAns, t3);
+      answers.clear();
+
+      questionText = "If a process fails, most operating system write the error information to a ______";
+      correctAns = "C";
+      answers.add("new file");
+      answers.add("another running process");
+      answers.add("log file");
+      answers.add("none of the mentioned");
+      Question q29 = new Question(questionText, answers, correctAns, t3);
+      answers.clear();
+
+      questionText = "Where is the operating system placed in the memory?";
+      correctAns = "A";
+      answers.add("either low or high memory (depending on the location of interrupt vector)");
+      answers.add("in the low memory");
+      answers.add("in the high memory");
+      answers.add("none of the mentioned");
+      Question q30 = new Question(questionText, answers, correctAns, t3);
+      answers.clear();
+
+
+      AddQuestion2(q1);
+      AddQuestion2(q2);
+      AddQuestion2(q3);
+      AddQuestion2(q4);
+      AddQuestion2(q5);
+      AddQuestion2(q6);
+      AddQuestion2(q7);
+      AddQuestion2(q8);
+      AddQuestion2(q9);
+      AddQuestion2(q10);
+
+      AddQuestion2(q11);
+      AddQuestion2(q12);
+      AddQuestion2(q13);
+      AddQuestion2(q14);
+      AddQuestion2(q15);
+      AddQuestion2(q16);
+      AddQuestion2(q17);
+      AddQuestion2(q18);
+      AddQuestion2(q19);
+      AddQuestion2(q20);
+
+      AddQuestion2(q21);
+      AddQuestion2(q22);
+      AddQuestion2(q23);
+      AddQuestion2(q24);
+      AddQuestion2(q25);
+      AddQuestion2(q26);
+      AddQuestion2(q27);
+      AddQuestion2(q28);
+      AddQuestion2(q29);
+      AddQuestion2(q30);
     }
 
     public static List<String> Students_names(Session session) throws Exception {
