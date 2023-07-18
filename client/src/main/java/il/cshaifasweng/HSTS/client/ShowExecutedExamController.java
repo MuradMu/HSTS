@@ -80,6 +80,10 @@ public class ShowExecutedExamController implements Initializable {
         QuestionsTable.refresh();
     }
 
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
 //    public void setExam(Exam exam) {
 //        this.exam = exam;
 //        List<Question> ExamQuestions = exam.getQuestions();
@@ -88,31 +92,31 @@ public class ShowExecutedExamController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TableColumn<Question, Integer> Number_of_Question_Colum = new TableColumn<>("Number of Question");
-        TableColumn<Question, String> Question_Text_Colum = new TableColumn<>("Question Text");
-        TableColumn<Question, String> Answer_A_Colum = new TableColumn<>("Answer A");
-        TableColumn<Question, String> Answer_B_Colum = new TableColumn<>("Answer B");
-        TableColumn<Question, String> Answer_C_Colum = new TableColumn<>("Answer C");
-        TableColumn<Question, String> Answer_D_Colum = new TableColumn<>("Answer D");
-        TableColumn<Question, String> Chosen_Answer_Colum = new TableColumn<>("Chosen Answer");
-        TableColumn<Question, String> Correct_Answer_Colum = new TableColumn<>("Correct Answer");
-        TableColumn<Question, Integer> Question_Point_Colum = new TableColumn<>("Question Point");
-        TableColumn<Question, Integer> Student_Point_Colum = new TableColumn<>("Student Point In Question");
+        TableColumn<Question, Integer> questionNumCol = new TableColumn<>("Question Number");
+        TableColumn<Question, String> questionCol = new TableColumn<>("Question");
+        TableColumn<Question, String> aCol = new TableColumn<>("A");
+        TableColumn<Question, String> bCol = new TableColumn<>("B");
+        TableColumn<Question, String> cCol = new TableColumn<>("C");
+        TableColumn<Question, String> dCol = new TableColumn<>("D");
+        TableColumn<Question, String> chosenAnswerCol = new TableColumn<>("Chosen Answer");
+        TableColumn<Question, String> correctAnswerCol = new TableColumn<>("Correct Answer");
+        TableColumn<Question, Integer> pointsCol = new TableColumn<>("Points");
+        TableColumn<Question, Integer> studentPointsCol = new TableColumn<>("Received Points");
 
         // Define property value factories for each column
-        Number_of_Question_Colum.setCellValueFactory(new PropertyValueFactory<>("IdNum"));
-        Question_Text_Colum.setCellValueFactory(new PropertyValueFactory<>("questionText"));
-        Answer_A_Colum.setCellValueFactory(new PropertyValueFactory<>("answerA"));
-        Answer_B_Colum.setCellValueFactory(new PropertyValueFactory<>("answerB"));
-        Answer_C_Colum.setCellValueFactory(new PropertyValueFactory<>("answerC"));
-        Answer_D_Colum.setCellValueFactory(new PropertyValueFactory<>("answerD"));
-        Chosen_Answer_Colum.setCellValueFactory(new PropertyValueFactory<>("chosenAnswer"));
-        Correct_Answer_Colum.setCellValueFactory(new PropertyValueFactory<>("correctAnswer"));
-        Question_Point_Colum.setCellValueFactory(new PropertyValueFactory<>("points"));
+        questionNumCol.setCellValueFactory(new PropertyValueFactory<>("IdNum"));
+        questionCol.setCellValueFactory(new PropertyValueFactory<>("questionText"));
+        aCol.setCellValueFactory(new PropertyValueFactory<>("answerA"));
+        bCol.setCellValueFactory(new PropertyValueFactory<>("answerB"));
+        cCol.setCellValueFactory(new PropertyValueFactory<>("answerC"));
+        dCol.setCellValueFactory(new PropertyValueFactory<>("answerD"));
+        chosenAnswerCol.setCellValueFactory(new PropertyValueFactory<>("chosenAnswer"));
+        correctAnswerCol.setCellValueFactory(new PropertyValueFactory<>("correctAnswer"));
+        pointsCol.setCellValueFactory(new PropertyValueFactory<>("points"));
 
-        Student_Point_Colum.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        studentPointsCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         // Set a cell value factory for the "Received Points" column to display and update the value
-        Student_Point_Colum.setCellValueFactory(cellData -> {
+        studentPointsCol.setCellValueFactory(cellData -> {
             Question question = cellData.getValue();
             SimpleObjectProperty<Integer> property = new SimpleObjectProperty<>(question.getReceived_points());
 
@@ -133,12 +137,12 @@ public class ShowExecutedExamController implements Initializable {
         });
         QuestionsTable.setEditable(true);
 
-        QuestionsTable.getColumns().addAll(Number_of_Question_Colum, Question_Text_Colum, Answer_A_Colum, Answer_B_Colum, Answer_C_Colum, Answer_D_Colum, Chosen_Answer_Colum, Correct_Answer_Colum, Question_Point_Colum, Student_Point_Colum);
+        QuestionsTable.getColumns().addAll(
+                questionNumCol, questionCol, aCol, bCol, cCol, dCol,
+                chosenAnswerCol, correctAnswerCol, pointsCol, studentPointsCol
+        );
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
     public void SubmitExam(ActionEvent actionEvent) throws IOException {
         for (Question question : QuestionsTable.getItems()) {
             int receivedPoints = question.getReceived_points();

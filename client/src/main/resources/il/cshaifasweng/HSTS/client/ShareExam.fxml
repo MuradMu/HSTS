@@ -20,7 +20,7 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="84.0" layoutY="201.0" prefHeight="36.0" prefWidth="395.0" text="The information you need to share with students :">
+      <Label alignment="CENTER" layoutX="103.0" layoutY="193.0" prefHeight="36.0" prefWidth="395.0" text="Exam info :">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -30,6 +30,6 @@
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <TextArea fx:id="InformationToShare" layoutX="192.0" layoutY="237.0" prefHeight="93.0" prefWidth="210.0" />
+      <TextArea fx:id="InformationToShare" layoutX="196.0" layoutY="238.0" prefHeight="93.0" prefWidth="210.0" />
    </children>
 </AnchorPane>

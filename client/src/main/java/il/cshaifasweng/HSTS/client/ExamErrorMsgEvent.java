@@ -1,20 +1,20 @@
 package il.cshaifasweng.HSTS.client;
 import java.time.LocalDateTime;
 public class ExamErrorMsgEvent {
-    private String msg;
-    LocalDateTime L_time;
+    private String errorMsg;
+    LocalDateTime timeStamp;
 
 
-    public ExamErrorMsgEvent(String msg) {
-        this.msg = msg;
-        this.L_time = LocalDateTime.now();
+    public ExamErrorMsgEvent(String errorMsg) {
+        this.errorMsg = errorMsg;
+        this.timeStamp = LocalDateTime.now();
     }
 
-    public String getmsg() {
-        return this.msg;
+    public String getErrorMsg() {
+        return errorMsg;
     }
 
-    public LocalDateTime getLTime() {
-        return L_time;
+    public LocalDateTime getTimeStamp() {
+        return timeStamp;
     }
 }

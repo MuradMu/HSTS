@@ -28,42 +28,28 @@ public class CreateExamController implements Initializable{
     private Teacher teacher;
 
     @FXML
-    private Button AddExamButton;
-
-    @FXML
-    private ChoiceBox<Course> ChooseCourseBox;
-
-    @FXML
-    private TextField ExamTime;
-
-    @FXML
-    private TableView<Question> QuestionTable;
-
-    @FXML
-    private TextField StudentDiscription;
-
-    @FXML
-    private TextField TeacherDiscription;
-
-    @FXML
     private AnchorPane rootPane;
-
     @FXML
-    private Label student_disc;
-
+    private TableView<Question> questionTable;
     @FXML
-    private Label teacher_disc;
+    private TextField time_minutes;
+    @FXML
+    private TextField teacher_discription;
+    @FXML
+    private TextField student_discription;
+    @FXML
+    private ChoiceBox<Course> courseChoiceBox;
     private List<Question> questions = new ArrayList<>();
     public void updateLIST() {
-        QuestionTable.refresh();
+        questionTable.refresh();
     }
 
     private List<Question> selectedQuestions = new ArrayList<>();
     public void initializee() {
         List<Course> teacherCourses = teacher.getCourses();
         ObservableList<Course> courseList = FXCollections.observableArrayList(teacherCourses);
-        ChooseCourseBox.setItems(courseList);
-        ChooseCourseBox.setConverter(new StringConverter<Course>() {
+        courseChoiceBox.setItems(courseList);
+        courseChoiceBox.setConverter(new StringConverter<Course>() {
             @Override
             public String toString(Course course) {
                 if (course == null) {
@@ -71,13 +57,16 @@ public class CreateExamController implements Initializable{
                 }
                 return course.getCourse_name();
             }
+
             @Override
             public Course fromString(String string) {
                 // Not used in this case
                 return null;
             }
         });
-        TextFormatter<Integer> formatter = new TextFormatter<>(new IntegerStringConverter(), 0, c -> c.getControlNewText().matches("\\d*") ? c : null);ExamTime.setTextFormatter(formatter);
+        TextFormatter<Integer> formatter = new TextFormatter<>(new IntegerStringConverter(), 0,
+                c -> c.getControlNewText().matches("\\d*") ? c : null);
+        time_minutes.setTextFormatter(formatter);
 
         ObservableList<Question> questionsForTeacher = FXCollections.observableArrayList();
 
@@ -90,8 +79,11 @@ public class CreateExamController implements Initializable{
             question.setPoints(0);
             question.setSelected(false);
         }
-        QuestionTable.setItems(questionsForTeacher);
+        questionTable.setItems(questionsForTeacher);
     }
+
+
+
     @FXML
     public void AddExam(ActionEvent actionEvent) throws IOException {
         Map<Question, Integer> question_grade = new HashMap<>();
@@ -122,17 +114,17 @@ public class CreateExamController implements Initializable{
             }
         }
         if(flag){
-            int time = Integer.parseInt(ExamTime.getText());
+            int time = Integer.parseInt(time_minutes.getText());
             if(time > 0){
-                Course selectedCourse = ChooseCourseBox.getValue();
+                Course selectedCourse = courseChoiceBox.getValue();
                 if (selectedCourse != null) {
                     //Create the exam and send it to the server.
                     Map<Question, Integer> questionPoints = new HashMap<>();
                     for(Question question : selectedQuestions){
                         questionPoints.put(question, question.getPoints());
                     }
-                    String dis1 = TeacherDiscription.getText();
-                    String dis2 = StudentDiscription.getText();
+                    String dis1 = teacher_discription.getText();
+                    String dis2 = student_discription.getText();
                     Exam exam = new Exam(teacher,selectedCourse,selectedQuestions, time, questionPoints,dis1,dis2);
                     teacher.removeExam(exam);
                     selectedCourse.removeExam(exam);
@@ -169,29 +161,29 @@ public class CreateExamController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TableColumn<Question, Integer> Number_of_Question_Colum = new TableColumn<>("Number of Question");
-        TableColumn<Question, String> Question_Text_Colum = new TableColumn<>("Question Text");
-        TableColumn<Question, String> Answer_A_Colum = new TableColumn<>("Answer A");
-        TableColumn<Question, String> Answer_B_Colum = new TableColumn<>("Answer B");
-        TableColumn<Question, String> Answer_C_Colum = new TableColumn<>("Answer C");
-        TableColumn<Question, String> Answer_D_Colum = new TableColumn<>("Answer D");
-        TableColumn<Question, String> Correct_Answer_Colum = new TableColumn<>("Correct Answer");
+        TableColumn<Question, Integer> questionNumCol = new TableColumn<>("Question_num");
+        TableColumn<Question, String> questionCol = new TableColumn<>("Question");
+        TableColumn<Question, String> aCol = new TableColumn<>("A");
+        TableColumn<Question, String> bCol = new TableColumn<>("B");
+        TableColumn<Question, String> cCol = new TableColumn<>("C");
+        TableColumn<Question, String> dCol = new TableColumn<>("D");
+        TableColumn<Question, String> answerCol = new TableColumn<>("Answer");
 
-        Number_of_Question_Colum.setCellValueFactory(new PropertyValueFactory<>("IdNum"));
-        Question_Text_Colum.setCellValueFactory(new PropertyValueFactory<>("questionText"));
-        Answer_A_Colum.setCellValueFactory(new PropertyValueFactory<>("answerA"));
-        Answer_B_Colum.setCellValueFactory(new PropertyValueFactory<>("answerB"));
-        Answer_C_Colum.setCellValueFactory(new PropertyValueFactory<>("answerC"));
-        Answer_D_Colum.setCellValueFactory(new PropertyValueFactory<>("answerD"));
-        Correct_Answer_Colum.setCellValueFactory(new PropertyValueFactory<>("correctAnswer"));
+        questionNumCol.setCellValueFactory(new PropertyValueFactory<>("IdNum"));
+        questionCol.setCellValueFactory(new PropertyValueFactory<>("questionText"));
+        aCol.setCellValueFactory(new PropertyValueFactory<>("answerA"));
+        bCol.setCellValueFactory(new PropertyValueFactory<>("answerB"));
+        cCol.setCellValueFactory(new PropertyValueFactory<>("answerC"));
+        dCol.setCellValueFactory(new PropertyValueFactory<>("answerD"));
+        answerCol.setCellValueFactory(new PropertyValueFactory<>("correctAnswer"));
 
-        TableColumn<Question, Boolean> Select_Colum = new TableColumn<>("Select");
-        Select_Colum.setCellValueFactory(new PropertyValueFactory<>("selected"));
-        Select_Colum.setCellFactory(column -> new TableCell<Question, Boolean>() {
-            private final Button SelectButton = new Button();
+        TableColumn<Question, Boolean> selectCol = new TableColumn<>("Select");
+        selectCol.setCellValueFactory(new PropertyValueFactory<>("selected"));
+        selectCol.setCellFactory(column -> new TableCell<Question, Boolean>() {
+            private final Button selectButton = new Button();
 
             {
-                SelectButton.setOnAction(event -> {
+                selectButton.setOnAction(event -> {
                     Question question = getTableRow().getItem();
                     boolean selected = !question.isSelected();
                     if (selected) {
@@ -213,7 +205,7 @@ public class CreateExamController implements Initializable{
                     Question question = getTableRow().getItem();
                     if (question != null) {
                         updateButtonState(question.isSelected());
-                        setGraphic(SelectButton);
+                        setGraphic(selectButton);
                     } else {
                         setGraphic(null);
                     }
@@ -222,9 +214,9 @@ public class CreateExamController implements Initializable{
 
             private void updateButtonState(boolean selected) {
                 if (selected) {
-                    SelectButton.setText("Deselect");
+                    selectButton.setText("Deselect");
                 } else {
-                    SelectButton.setText("Select");
+                    selectButton.setText("Select");
                 }
             }
         });
@@ -233,24 +225,24 @@ public class CreateExamController implements Initializable{
         pointsColumn.setCellValueFactory(new PropertyValueFactory<>("points"));
         pointsColumn.setCellFactory(column -> {
             return new TableCell<Question, Integer>() {
-                private TextField NewTextField = new TextField();
+                private TextField textField = new TextField();
 
                 {
-                    NewTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                    textField.textProperty().addListener((observable, oldValue, newValue) -> {
                         if (!newValue.matches("\\d*")) {
-                            NewTextField.setText(newValue.replaceAll("[^\\d]", ""));
+                            textField.setText(newValue.replaceAll("[^\\d]", ""));
                         }
                     });
-                    NewTextField.setOnAction(event -> {
-                        int points = Integer.parseInt(NewTextField.getText());
+                    textField.setOnAction(event -> {
+                        int points = Integer.parseInt(textField.getText());
                         // Handle the points input as desired, e.g., store it in the Question object
                         Question question = getTableRow().getItem();
                         question.setPoints(points);
                     });
 
-                    NewTextField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+                    textField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
                         if (!isNowFocused) {
-                            int points = Integer.parseInt(NewTextField.getText());
+                            int points = Integer.parseInt(textField.getText());
                             // Handle the points input as desired, e.g., store it in the Question object
                             Question question = getTableRow().getItem();
                             question.setPoints(points);
@@ -264,11 +256,11 @@ public class CreateExamController implements Initializable{
                     if (empty || item == null) {
                         setGraphic(null);
                     } else {
-                        setGraphic(NewTextField);
+                        setGraphic(textField);
                         if (isEditing()) {
-                            NewTextField.setText(getString());
+                            textField.setText(getString());
                         } else {
-                            NewTextField.setText(String.valueOf(item));
+                            textField.setText(String.valueOf(item));
                         }
                     }
                 }
@@ -280,8 +272,10 @@ public class CreateExamController implements Initializable{
         });
 
 
-        QuestionTable.getColumns().addAll(Select_Colum, pointsColumn);
-        QuestionTable.getColumns().addAll(Number_of_Question_Colum, Question_Text_Colum, Answer_A_Colum, Answer_B_Colum, Answer_C_Colum, Answer_D_Colum, Correct_Answer_Colum);
+        questionTable.getColumns().addAll(selectCol, pointsColumn);
+        questionTable.getColumns().addAll(
+                questionNumCol, questionCol, aCol, bCol, cCol, dCol, answerCol
+        );
         EventBus.getDefault().register(this);
     }
 }

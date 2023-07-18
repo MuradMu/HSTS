@@ -34,45 +34,53 @@ public class ShowExamController implements Initializable {
     @FXML
     private TableView<Question> QuestionsTable;
 
-//    public void updateLIST() {
-//        QuestionsTable.refresh();
-//    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        TableColumn<Question, Integer> Number_of_Question_Colum = new TableColumn<>("Number of Question");
-        TableColumn<Question, String> Question_Text_Colum = new TableColumn<>("Question Text");
-        TableColumn<Question, String> Answer_A_Colum = new TableColumn<>("Answer A");//manual set-> the header label is set to "A",
-        TableColumn<Question, String> Answer_B_Colum = new TableColumn<>("Answer B");
-        TableColumn<Question, String> Answer_C_Colum = new TableColumn<>("Answer C");
-        TableColumn<Question, String> Answer_D_Colum = new TableColumn<>("Answer D");
-        TableColumn<Question, String> Correct_Answer_Colum = new TableColumn<>("Correct Answer");
-        TableColumn<Question, Integer> Question_Point_Colum = new TableColumn<>("Question Point");
-
-
-        // Define property value factories for each column
-        Number_of_Question_Colum.setCellValueFactory(new PropertyValueFactory<>("IdNum"));
-        Question_Text_Colum.setCellValueFactory(new PropertyValueFactory<>("questionText"));
-        Answer_A_Colum.setCellValueFactory(new PropertyValueFactory<>("answerA"));
-        Answer_B_Colum.setCellValueFactory(new PropertyValueFactory<>("answerB"));
-        Answer_C_Colum.setCellValueFactory(new PropertyValueFactory<>("answerC"));
-        Answer_D_Colum.setCellValueFactory(new PropertyValueFactory<>("answerD"));
-        Correct_Answer_Colum.setCellValueFactory(new PropertyValueFactory<>("correctAnswer"));
-        Question_Point_Colum.setCellValueFactory(cellData -> {
-            Question question = cellData.getValue();
-            Map<Question, Integer> QuestionPointsMap = exam.getQuestionPoints();
-            Integer points = QuestionPointsMap.get(question);
-            TeacherDescription.setText(exam.getDescription_Teacher());
-            return new SimpleObjectProperty<>(points);
-        });
-
-        QuestionsTable.getColumns().addAll(Number_of_Question_Colum, Question_Text_Colum, Answer_A_Colum, Answer_B_Colum, Answer_C_Colum, Answer_D_Colum, Correct_Answer_Colum, Question_Point_Colum);
+    public void updateLIST() {
+        QuestionsTable.refresh();
     }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
     public void setExam(Exam exam) {
         this.exam = exam;
         List<Question> ExamQuestions = exam.getQuestions();
         QuestionsTable.setItems(FXCollections.observableArrayList(ExamQuestions));
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        TableColumn<Question, Integer> questionNumCol = new TableColumn<>("Question_num");
+        TableColumn<Question, String> questionCol = new TableColumn<>("Question");
+        TableColumn<Question, String> aCol = new TableColumn<>("A");//manual set-> the header label is set to "A",
+        TableColumn<Question, String> bCol = new TableColumn<>("B");
+        TableColumn<Question, String> cCol = new TableColumn<>("C");
+        TableColumn<Question, String> dCol = new TableColumn<>("D");
+        TableColumn<Question, String> answerCol = new TableColumn<>("Answer");
+        TableColumn<Question, Integer> pointsCol = new TableColumn<>("Points");
+
+
+        // Define property value factories for each column
+        questionNumCol.setCellValueFactory(new PropertyValueFactory<>("IdNum"));
+        questionCol.setCellValueFactory(new PropertyValueFactory<>("questionText"));
+        aCol.setCellValueFactory(new PropertyValueFactory<>("answerA"));
+        bCol.setCellValueFactory(new PropertyValueFactory<>("answerB"));
+        cCol.setCellValueFactory(new PropertyValueFactory<>("answerC"));
+        dCol.setCellValueFactory(new PropertyValueFactory<>("answerD"));
+        answerCol.setCellValueFactory(new PropertyValueFactory<>("correctAnswer"));
+        pointsCol.setCellValueFactory(cellData -> {
+            Question question = cellData.getValue();
+            Map<Question, Integer> questionPointsMap = exam.getQuestionPoints();
+            Integer points = questionPointsMap.get(question);
+            TeacherDescription.setText(exam.getDescription_Teacher());
+            return new SimpleObjectProperty<>(points);
+        });
+
+        QuestionsTable.getColumns().addAll(
+                questionNumCol, questionCol, aCol, bCol, cCol, dCol, answerCol, pointsCol
+        );
+    }
+
 
     public void AutoExam(ActionEvent actionEvent) {
         // now if we try to share exam that already shared , alert will show and scene will close
@@ -105,9 +113,5 @@ public class ShowExamController implements Initializable {
                 throw new RuntimeException(e);
             }
         }
-    }
-    public Teacher getTecher(){return this.teacher;}
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
     }
 }

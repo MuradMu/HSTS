@@ -6,98 +6,44 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<?import javafx.scene.control.Button?>-->
-<!--<?import javafx.scene.control.ChoiceBox?>-->
-<!--<?import javafx.scene.control.Label?>-->
-<!--<?import javafx.scene.control.TableView?>-->
-<!--<?import javafx.scene.control.TextField?>-->
-<!--<?import javafx.scene.layout.AnchorPane?>-->
-<!--<?import javafx.scene.layout.HBox?>-->
-<!--<?import javafx.scene.layout.VBox?>-->
-<!--<?import javafx.scene.text.Font?>-->
-<!--<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.EditExamController">-->
-<!--    <children>-->
-<!--        <HBox layoutX="-1.0" prefHeight="331.0" prefWidth="806.0">-->
-<!--            <children>-->
-<!--                <TableView fx:id="questionTable" prefHeight="331.0" prefWidth="806.0">-->
-<!--                </TableView>-->
-<!--            </children>-->
-<!--        </HBox>-->
-<!--        <VBox fx:id="coursesVBox" layoutX="14.0" layoutY="461.0" prefHeight="112.0" prefWidth="507.0">-->
-<!--            <children>-->
-<!--                <Button fx:id="UpdateExam" mnemonicParsing="false" onAction="#UpdateExam" prefHeight="54.0" prefWidth="118.0" text="Update Exam" />-->
-<!--            </children>-->
-<!--        </VBox>-->
-<!--        <VBox layoutX="14.0" layoutY="331.0" spacing="10">-->
-<!--            <Label text="Choose a Course:" />-->
-<!--            <ChoiceBox fx:id="courseChoiceBox" />-->
-<!--        </VBox>-->
-<!--      <Label layoutX="353.0" layoutY="348.0" text="Exam time (minutes):">-->
-<!--         <font>-->
-<!--            <Font size="26.0" />-->
-<!--         </font>-->
-<!--      </Label>-->
-<!--      <TextField fx:id="time_minutes" layoutX="601.0" layoutY="347.0" prefHeight="39.0" prefWidth="74.0" text="120">-->
-<!--         <font>-->
-<!--            <Font size="18.0" />-->
-<!--         </font>-->
-<!--      </TextField>-->
-<!--      <TextField fx:id="teacher_discription" layoutX="250.0" layoutY="439.0" prefHeight="121.0" prefWidth="205.0" />-->
-<!--      <TextField fx:id="student_discription" layoutX="470.0" layoutY="439.0" prefHeight="121.0" prefWidth="205.0" />-->
-<!--      <Label fx:id="teacher_disc" layoutX="268.0" layoutY="412.0" text="Teacher Discription">-->
-<!--         <font>-->
-<!--            <Font size="20.0" />-->
-<!--         </font>-->
-<!--      </Label>-->
-<!--      <Label fx:id="student_disc" layoutX="488.0" layoutY="412.0" text="Student Discription">-->
-<!--         <font>-->
-<!--            <Font size="20.0" />-->
-<!--         </font>-->
-<!--      </Label>-->
-<!--    </children>-->
-<!--</AnchorPane>-->
-
-<AnchorPane fx:id="rootPane" prefHeight="546.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.CreateExamController">
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.EditExamController">
     <children>
-        <Label layoutX="7.0" layoutY="364.0" text="Exam time (in minutes) :">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Label>
-        <TextField fx:id="ExamTime" layoutX="201.0" layoutY="363.0" prefHeight="25.0" prefWidth="74.0">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </TextField>
-        <VBox layoutX="6.0" layoutY="331.0" prefHeight="52.0" prefWidth="137.0" spacing="10" />
-        <TextField fx:id="TeacherDiscription" layoutX="7.0" layoutY="438.0" prefHeight="87.0" prefWidth="205.0" />
-        <TextField fx:id="StudentDiscription" layoutX="227.0" layoutY="438.0" prefHeight="87.0" prefWidth="205.0" />
-        <Label fx:id="teacher_disc" layoutX="5.0" layoutY="408.0" text="Teacher Discription">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Label>
-        <Label fx:id="student_disc" layoutX="227.0" layoutY="408.0" text="Student Discription">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Label>
-        <ChoiceBox fx:id="ChooseCourseBox" layoutX="159.0" layoutY="6.0" />
-        <Button fx:id="AddQuestionButton" layoutX="490.0" layoutY="447.0" mnemonicParsing="false" onAction="#AddExam" prefHeight="69.0" prefWidth="118.0" text="Add Exam">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Button>
-        <TableView fx:id="QuestionTable" layoutX="4.0" layoutY="43.0" prefHeight="314.0" prefWidth="806.0">
-        </TableView>
-        <Label layoutX="19.0" layoutY="5.0" prefHeight="27.0" prefWidth="134.0" text="Choose  Course:">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Label>
+          <TableView fx:id="questionTable" layoutY="47.0" prefHeight="331.0" prefWidth="806.0">
+                </TableView>
+          <Button fx:id="UpdateExam" layoutX="14.0" layoutY="481.0" mnemonicParsing="false" onAction="#UpdateExam" prefHeight="65.0" prefWidth="170.0" text="Update Exam">
+         <font>
+            <Font name="David" size="18.0" />
+         </font>
+      </Button>
+         <ChoiceBox fx:id="courseChoiceBox" layoutX="165.0" layoutY="15.0" prefHeight="25.0" prefWidth="170.0" />
+         <Label layoutX="11.0" layoutY="14.0" text="Choose a Course:">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="student_disc" layoutX="605.0" layoutY="392.0" text="Student Discription">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="12.0" layoutY="393.0" text="Exam time (minutes):">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="time_minutes" layoutX="194.0" layoutY="392.0" prefHeight="25.0" prefWidth="74.0" text="120">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="teacher_discription" layoutX="353.0" layoutY="427.0" prefHeight="121.0" prefWidth="205.0" />
+      <TextField fx:id="student_discription" layoutX="587.0" layoutY="427.0" prefHeight="121.0" prefWidth="205.0" />
+      <Label fx:id="teacher_disc" layoutX="371.0" layoutY="390.0" text="Teacher Discription">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

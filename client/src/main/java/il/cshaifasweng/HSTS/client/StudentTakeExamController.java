@@ -114,7 +114,7 @@ public class StudentTakeExamController implements Initializable {
         if(takeExamFlag){
 //            Pcontroller.setTake_exam(false);
             TakeExamMsg msg = startExamEvent.getTakeExamMsg();
-            if(msg.getRequest().equals("#ExamReturnedSuccessfully")){//Exam is returned successfully, The student cans tart taking it now
+            if(msg.getRequest().equals("#ExamReturnedSuccessfully")){//Exam is returned successfully, The student canstart taking it now
                 Platform.runLater(() -> {
                     EventBus.getDefault().unregister(this);
                     try {
