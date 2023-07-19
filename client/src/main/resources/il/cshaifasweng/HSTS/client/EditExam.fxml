@@ -12,7 +12,7 @@
     <children>
           <TableView fx:id="questionTable" layoutY="47.0" prefHeight="331.0" prefWidth="806.0">
                 </TableView>
-          <Button fx:id="UpdateExam" layoutX="14.0" layoutY="481.0" mnemonicParsing="false" onAction="#UpdateExam" prefHeight="65.0" prefWidth="170.0" text="Update Exam">
+          <Button fx:id="UpdateExam" layoutX="11.0" layoutY="467.0" mnemonicParsing="false" onAction="#UpdateExam" prefHeight="65.0" prefWidth="170.0" text="Update Exam">
          <font>
             <Font name="David" size="18.0" />
          </font>
@@ -21,11 +21,6 @@
          <Label layoutX="11.0" layoutY="14.0" text="Choose a Course:">
          <font>
             <Font name="System Bold Italic" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="student_disc" layoutX="605.0" layoutY="392.0" text="Student Discription">
-         <font>
-            <Font size="20.0" />
          </font>
       </Label>
       <Label layoutX="12.0" layoutY="393.0" text="Exam time (minutes):">
@@ -38,12 +33,5 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="teacher_discription" layoutX="353.0" layoutY="427.0" prefHeight="121.0" prefWidth="205.0" />
-      <TextField fx:id="student_discription" layoutX="587.0" layoutY="427.0" prefHeight="121.0" prefWidth="205.0" />
-      <Label fx:id="teacher_disc" layoutX="371.0" layoutY="390.0" text="Teacher Discription">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
     </children>
 </AnchorPane>
