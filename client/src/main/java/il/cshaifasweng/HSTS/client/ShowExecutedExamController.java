@@ -30,9 +30,6 @@ public class ShowExecutedExamController implements Initializable {
     private ExamSubmittion SubmittedExam;
 
     @FXML
-    private TextField TeacherDescription;
-
-    @FXML
     private TableView<Question> QuestionsTable;
     private ShowExecutedExamsController PreviousController;
 

@@ -34,10 +34,6 @@ public class CreateExamController implements Initializable{
     @FXML
     private TextField time_minutes;
     @FXML
-    private TextField teacher_discription;
-    @FXML
-    private TextField student_discription;
-    @FXML
     private ChoiceBox<Course> courseChoiceBox;
     private List<Question> questions = new ArrayList<>();
     public void updateLIST() {
@@ -123,9 +119,7 @@ public class CreateExamController implements Initializable{
                     for(Question question : selectedQuestions){
                         questionPoints.put(question, question.getPoints());
                     }
-                    String dis1 = teacher_discription.getText();
-                    String dis2 = student_discription.getText();
-                    Exam exam = new Exam(teacher,selectedCourse,selectedQuestions, time, questionPoints,dis1,dis2);
+                    Exam exam = new Exam(teacher,selectedCourse,selectedQuestions, time, questionPoints);
                     teacher.removeExam(exam);
                     selectedCourse.removeExam(exam);
                     MsgExamCreation msg = new MsgExamCreation("#NewExam", exam);
