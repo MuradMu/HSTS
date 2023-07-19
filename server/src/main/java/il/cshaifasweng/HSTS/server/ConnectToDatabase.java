@@ -611,7 +611,7 @@ public class ConnectToDatabase {
         System.out.print("\nADDING Exam\n");
         session.beginTransaction();
         Exam ExamToADD = new Exam(exam.getTeacher(), exam.getCourse(), exam.getQuestions(), exam.getTime(),
-                exam.getQuestionPoints());
+                exam.getQuestionPoints(), exam.getDescription_Teacher(), exam.getDescription_Student());
         session.save(ExamToADD);
         session.flush();
         session.getTransaction().commit();

@@ -32,6 +32,10 @@ public class EditExamController implements Initializable {
     private TextField time_minutes;
     @FXML
     private ChoiceBox<Course> courseChoiceBox;
+    @FXML
+    private TextField teacher_discription;
+    @FXML
+    private TextField student_discription;
     private List<Question> questions = new ArrayList<>();
 
     private List<Question> selectedQuestions = new ArrayList<>();
@@ -77,6 +81,8 @@ public class EditExamController implements Initializable {
         courseChoiceBox.setValue(exam.getCourse());
         time_minutes.setText(Integer.toString(exam.getTime()));
         questionTable.setItems(questionsForTeacher);
+        teacher_discription.setText(exam.getDescription_Teacher());
+        student_discription.setText(exam.getDescription_Student());
     }
 
     @FXML
@@ -118,7 +124,9 @@ public class EditExamController implements Initializable {
                     for(Question question : selectedQuestions){
                         questionPoints.put(question, question.getPoints());
                     }
-                    Exam exam = new Exam(teacher,selectedCourse,selectedQuestions, time, questionPoints);
+                    String dis1 = teacher_discription.getText();
+                    String dis2 = student_discription.getText();
+                    Exam exam = new Exam(teacher,selectedCourse,selectedQuestions, time, questionPoints,dis1,dis2);
                     teacher.removeExam(exam);
                     selectedCourse.removeExam(exam);
                     MsgUpdateExam msg = new MsgUpdateExam("#EditExam", exam);

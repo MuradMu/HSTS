@@ -44,6 +44,8 @@ public class StudentExamPageController implements Initializable {
     private Label remainingTimeLabel;
     @FXML
     private Label teacherNotesLabel;
+    @FXML
+    private TextArea teacherNotesField;
 
     private LocalTime startTime = null;
     private Duration duration;
@@ -80,6 +82,7 @@ public class StudentExamPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         EventBus.getDefault().register(this);
+        teacherNotesField.setEditable(false);
     }
 
     public void submitExam(ActionEvent actionEvent) {
@@ -98,6 +101,7 @@ public class StudentExamPageController implements Initializable {
         this.student = student;
         this.exam = examToShare;
 
+        teacherNotesField.setText(examToShare.getDescription_Student());
         // Calculate exam start time and duration based on examToShare
         startTime = LocalTime.now();
         int examDurationMinutes = exam.getTime();
