@@ -44,6 +44,10 @@ public class Exam implements Serializable {
     @Column(name = "points")
     private Map<Question, Integer> questionPoints = new HashMap<>();
 
+    @Column(name = "Description_Teacher")
+    private String Description_Teacher = "";
+    @Column(name = "Description_Student")
+    private String Description_Student = "";
    @Column(name="password",length = 4)
     private String password="";
 
@@ -61,12 +65,14 @@ public class Exam implements Serializable {
 
 
 
-    public Exam(Teacher teacher, Course course, List<Question> questions, int time, Map<Question, Integer> questionPoints){
+    public Exam(Teacher teacher, Course course, List<Question> questions, int time, Map<Question, Integer> questionPoints, String Description_Teacher, String Description_Student){
         this.course = course;
         this.teacher = teacher;
         this.questions = questions;
         this.time = time;
         this.questionPoints = questionPoints;
+        this.Description_Teacher = Description_Teacher;
+        this.Description_Student = Description_Student;
         this.password="";
         this.IsShared=false;
         course.addExam(this);
@@ -128,6 +134,14 @@ public class Exam implements Serializable {
 
     public Map<Question, Integer> getQuestionPoints() {
         return questionPoints;
+    }
+
+    public String getDescription_Student() {
+        return Description_Student;
+    }
+
+    public String getDescription_Teacher() {
+        return Description_Teacher;
     }
 
 

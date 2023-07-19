@@ -23,6 +23,11 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
+        <Label fx:id="student_disc" layoutX="605.0" layoutY="392.0" text="Student Discription">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
       <Label layoutX="12.0" layoutY="393.0" text="Exam time (minutes):">
          <font>
             <Font name="System Bold Italic" size="18.0" />
@@ -33,5 +38,12 @@
             <Font size="14.0" />
          </font>
       </TextField>
+        <TextField fx:id="teacher_discription" layoutX="353.0" layoutY="427.0" prefHeight="121.0" prefWidth="205.0" />
+        <TextField fx:id="student_discription" layoutX="587.0" layoutY="427.0" prefHeight="121.0" prefWidth="205.0" />
+        <Label fx:id="teacher_disc" layoutX="371.0" layoutY="390.0" text="Teacher Discription">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>
