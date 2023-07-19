@@ -3,6 +3,7 @@ package il.cshaifasweng.HSTS.client;
 import il.cshaifasweng.HSTS.entities.Exam;
 import il.cshaifasweng.HSTS.entities.Teacher;
 import il.cshaifasweng.HSTS.entities.*;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -51,11 +52,15 @@ public class ShowExamsController implements Initializable {
         TableColumn<Exam, Integer> TimeCol = new TableColumn<>("Time");
         TableColumn<Exam, Exam> ShowButtonCol = new TableColumn<>("Show");
         TableColumn<Exam, Exam> EditButtonCol = new TableColumn<>("Edit");
+        TableColumn<Exam, Exam> ShareButtonCol = new TableColumn<>("Share");
+        TableColumn<Exam, String> ExamPassCol = new TableColumn<>("Exam Password");
+
 
         ExamIDCol.setCellValueFactory(new PropertyValueFactory<>("id_num"));
         CourseIDCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourse().getId()));
         TeacherIDCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTeacher().getId()));
         TimeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
+        ExamPassCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPassword()));
 
         ShowButtonCol.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue()));
         ShowButtonCol.setCellFactory(param -> new TableCell<Exam, Exam>() {
@@ -107,7 +112,57 @@ public class ShowExamsController implements Initializable {
             }
         });
 
-        ExamsTable.getColumns().addAll(ExamIDCol, CourseIDCol, TeacherIDCol, TimeCol, ShowButtonCol, EditButtonCol);
+        ShareButtonCol.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue()));
+        ShareButtonCol.setCellFactory(param -> new TableCell<Exam, Exam>() {
+            private final Button showButton = new Button("Share");
+
+            {
+                showButton.setOnAction(event -> {
+                    Exam exam = getTableRow().getItem();
+                    if (exam != null) {
+                        if (exam.getShared()) {
+                            Platform.runLater(() -> { // there is a possible that event can sent by another thread, here we ensure it sent by javafx thrad
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                                        String.format("Message: \nData: %s",
+                                                "This Exam Already Shared In DataBase"));
+                                alert.setTitle("Alert!");
+                                alert.setHeaderText("Message:");
+                                alert.show();
+                            });
+                        } else {
+                            // we enter here so the exam not shared
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("ShareExam.fxml"));
+                                AnchorPane newScene = loader.load();
+                                Scene scene = new Scene(newScene);
+                                ShareExamController controller = loader.getController();
+                                //  ShareExamController controller = loader.getController();
+                                controller.setTeacher(teacher);
+                                controller.setExam(exam);
+                                Stage currentStage = new Stage();
+                                currentStage.setTitle("Sharing Exam id: " + exam.getId_num());
+                                currentStage.setScene(scene);
+                                currentStage.show();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Exam exam, boolean empty) {
+                super.updateItem(exam, empty);
+                if (empty || exam == null) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(showButton);
+                }
+            }
+        });
+
+        ExamsTable.getColumns().addAll(ExamIDCol, CourseIDCol, TeacherIDCol, TimeCol, ShowButtonCol, EditButtonCol, ExamPassCol, ShareButtonCol);
     }
 
     public void ShowExam(Exam exam){

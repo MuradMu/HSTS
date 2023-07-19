@@ -125,7 +125,7 @@ public class StudentTakeExamController implements Initializable {
                         currentStage.setTitle("Exam");
                         currentStage.setScene(scene);
                         StudentExamPageController controller = loader.getController();
-                        controller.setPPcontrolelr(Pcontroller);
+                        controller.setPPcontroller(Pcontroller);
                         controller.setParameters(student, msg.getExamToShare());
                         currentStage.show();
                     } catch (IOException e) {
