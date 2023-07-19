@@ -51,11 +51,14 @@ public class ShowExamsController implements Initializable {
         TableColumn<Exam, Integer> TimeCol = new TableColumn<>("Time");
         TableColumn<Exam, Exam> ShowButtonCol = new TableColumn<>("Show");
         TableColumn<Exam, Exam> EditButtonCol = new TableColumn<>("Edit");
+        TableColumn<Exam, String> ExamPassCol = new TableColumn<>("Exam Password");
+
 
         ExamIDCol.setCellValueFactory(new PropertyValueFactory<>("id_num"));
         CourseIDCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourse().getId()));
         TeacherIDCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTeacher().getId()));
         TimeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
+        ExamPassCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPassword()));
 
         ShowButtonCol.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue()));
         ShowButtonCol.setCellFactory(param -> new TableCell<Exam, Exam>() {
@@ -107,7 +110,7 @@ public class ShowExamsController implements Initializable {
             }
         });
 
-        ExamsTable.getColumns().addAll(ExamIDCol, CourseIDCol, TeacherIDCol, TimeCol, ShowButtonCol, EditButtonCol);
+        ExamsTable.getColumns().addAll(ExamIDCol, CourseIDCol, TeacherIDCol, TimeCol, ShowButtonCol, EditButtonCol, ExamPassCol);
     }
 
     public void ShowExam(Exam exam){

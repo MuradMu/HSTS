@@ -5,24 +5,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.StudentHomePageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0"  xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.StudentHomePageController">
    <children>
       <Button fx:id="details" layoutX="190.0" layoutY="106.0" mnemonicParsing="false" onAction="#showDetails" prefHeight="62.0" prefWidth="260.0" text="Details">
          <font>
             <Font size="29.0" />
          </font>
       </Button>
-      <Button fx:id="stats" layoutX="191.0" layoutY="191.0" mnemonicParsing="false" onAction="#showStats" prefHeight="62.0" prefWidth="260.0" text="Stats">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Button>
-      <Button fx:id="courses_grades" layoutX="190.0" layoutY="276.0" mnemonicParsing="false" onAction="#showGrades" prefHeight="62.0" prefWidth="260.0" text="Courses &amp; Grades">
+      <Button fx:id="courses_grades" layoutX="191.0" layoutY="191.0" mnemonicParsing="false" onAction="#showGrades" prefHeight="62.0" prefWidth="260.0" text="Courses &amp; Grades">
          <font>
             <Font size="28.0" />
          </font>
       </Button>
-      <Button fx:id="takeExams" layoutX="191.0" layoutY="365.0" mnemonicParsing="false" onAction="#TakeExam" prefHeight="62.0" prefWidth="260.0" text="Take Exam">
+      <Button fx:id="takeExams" layoutX="190.0" layoutY="270.0" mnemonicParsing="false" onAction="#TakeExam" prefHeight="62.0" prefWidth="260.0" text="Start Exam">
          <font>
             <Font size="28.0" />
          </font>
