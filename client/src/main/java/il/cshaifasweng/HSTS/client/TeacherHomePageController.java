@@ -162,7 +162,7 @@ public class TeacherHomePageController {
     @Subscribe
     public void onReceivingExecutedExams(ReceivingExecutedExamsEvent event){
         if(event.getMessage().getRequest().equals("#FetchedSuccessfully")){
-            TempController.setTeacher(teacher);
+            TempController.setUser(teacher);
             TempController.setExecutedExams(event.getMessage().getExamSubmittionList());
         }
     }

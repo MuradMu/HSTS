@@ -49,6 +49,18 @@ public class Student extends User implements Serializable {
         grades.add(grade);
     }
 
+    public void addExam(ExamSubmittion exam){
+        this.submitted_exams.add(exam);
+    }
+
+    public void removeExam(ExamSubmittion exam){
+        this.submitted_exams.remove(exam);
+    }
+
+    public List<ExamSubmittion> getExams() {
+        return submitted_exams;
+    }
+
     public int get_studentGrade(Course course){
         return gradesMap.get(course).getGrade();
     }

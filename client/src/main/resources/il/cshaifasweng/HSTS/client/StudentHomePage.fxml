@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0"  xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.StudentHomePageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.StudentHomePageController">
    <children>
       <Button fx:id="details" layoutX="190.0" layoutY="106.0" mnemonicParsing="false" onAction="#showDetails" prefHeight="62.0" prefWidth="260.0" text="Details">
          <font>
@@ -17,7 +17,7 @@
             <Font size="28.0" />
          </font>
       </Button>
-      <Button fx:id="takeExams" layoutX="190.0" layoutY="270.0" mnemonicParsing="false" onAction="#TakeExam" prefHeight="62.0" prefWidth="260.0" text="Start Exam">
+      <Button fx:id="takeExams" layoutX="191.0" layoutY="337.0" mnemonicParsing="false" onAction="#TakeExam" prefHeight="62.0" prefWidth="260.0" text="Start Exam">
          <font>
             <Font size="28.0" />
          </font>
@@ -26,5 +26,10 @@
          <font>
             <Font size="28.0" />
          </font></Label>
+      <Button fx:id="showExams" layoutX="190.0" layoutY="264.0" mnemonicParsing="false" onAction="#ShowExecutedExams" prefHeight="62.0" prefWidth="260.0" text="Show exams">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
