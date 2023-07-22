@@ -5,25 +5,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.StudentTakeExamController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="287.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.StudentTakeExamController">
    <children>
-      <TextField fx:id="DigitsText" layoutX="80.0" layoutY="120.0" />
-      <Button fx:id="TakeExamButton" layoutX="119.0" layoutY="200.0" mnemonicParsing="false" onAction="#TakeExam" text="Take Exam">
+      <TextField fx:id="DigitsText" layoutX="123.0" layoutY="180.0" />
+      <Button fx:id="TakeExamButton" layoutX="159.0" layoutY="226.0" mnemonicParsing="false" onAction="#TakeExam" text="Take Exam" textFill="#0040ff">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="16.0" layoutY="84.0" prefHeight="36.0" prefWidth="282.0" text="Type 4 digits password  ">
+      <TextField fx:id="IdNumText" layoutX="123.0" layoutY="106.0" />
+      <Text fill="RED" layoutX="21.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*To take exam you want to insert exam id and password." />
+      <Label alignment="CENTER" layoutX="57.0" layoutY="70.0" prefHeight="36.0" prefWidth="282.0" text="Enter Exam Id:">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="26.0" prefHeight="36.0" prefWidth="282.0" text="Type Exam Id_num:">
+      <Label alignment="CENTER" layoutX="57.0" layoutY="144.0" prefHeight="36.0" prefWidth="282.0" text="Enter password(4 digits):">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="IdNumText" layoutX="82.0" layoutY="62.0" />
    </children>
 </AnchorPane>

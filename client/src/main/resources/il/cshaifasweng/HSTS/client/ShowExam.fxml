@@ -18,12 +18,12 @@
             </children>
         </HBox>
         <VBox layoutX="14.0" layoutY="331.0" spacing="10" />
-        <Button fx:id="autoExamButton" layoutX="32.0" layoutY="354.0" mnemonicParsing="false" onAction="#AutoExam" prefHeight="75.0" prefWidth="264.0" text="Share Exam">
+        <Button fx:id="autoExamButton" layoutX="616.0" layoutY="367.0" mnemonicParsing="false" onAction="#AutoExam" prefHeight="75.0" prefWidth="151.0" text="Share Exam" textFill="#0067ff">
             <font>
                 <Font name="System Bold Italic" size="18.0" />
             </font></Button>
-        <TextField fx:id="TeacherDescription" layoutX="483.0" layoutY="366.0" prefHeight="75.0" prefWidth="264.0" />
-        <Label layoutX="483.0" layoutY="341.0" prefHeight="26.0" prefWidth="133.0" text="Teacher's Note:">
+        <TextField fx:id="TeacherDescription" layoutX="328.0" layoutY="367.0" prefHeight="75.0" prefWidth="264.0" />
+        <Label layoutX="328.0" layoutY="341.0" prefHeight="26.0" prefWidth="133.0" text="Teacher's Note:">
             <font>
                 <Font name="System Bold Italic" size="14.0" />
             </font>

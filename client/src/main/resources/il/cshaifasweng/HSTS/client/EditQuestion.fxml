@@ -17,7 +17,7 @@
                 <Font name="David" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="updateQuestion" layoutX="23.0" layoutY="368.0" mnemonicParsing="false" onAction="#UpdateQuestion" prefHeight="39.0" prefWidth="125.0" text="Update!" textFill="#1e00ff" />
+        <Button fx:id="updateQuestion" layoutX="516.0" layoutY="275.0" mnemonicParsing="false" onAction="#UpdateQuestion" prefHeight="39.0" prefWidth="125.0" text="Update!" textFill="#1e00ff" />
       <Label layoutX="23.0" layoutY="71.0" prefHeight="45.0" prefWidth="79.0" text="Question:">
          <font>
             <Font size="18.0" />
