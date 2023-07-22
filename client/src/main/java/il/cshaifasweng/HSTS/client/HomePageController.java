@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import il.cshaifasweng.HSTS.entities.MsgToLogIn;
 import il.cshaifasweng.HSTS.entities.User;
+import il.cshaifasweng.HSTS.entities.Student;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -80,7 +81,7 @@ public class HomePageController {
 						currentStage.setTitle(user.getFullName() + " Home Page");
 						currentStage.setScene(scene);
 						StudentHomePageController controller = loader.getController();
-						controller.setUser(user);
+						controller.setUser( (Student) user);
 						currentStage.show();
 					} catch (IOException e) {
 						throw new RuntimeException(e);

@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -15,17 +16,24 @@ import javafx.stage.Stage;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class StudentHomePageController implements Initializable{ //pay attention, till now you didnt register your class to eventbus i think
     //we will need it.....
-    private User user;
+    private Student student;
     private StudentGradesController NextController;
     @FXML
     private Label nameLabel;
+    @FXML
+    private Button showExams;
+
     private boolean take_exam = false;
+
+    private ShowExecutedExamsController TempController;
+
 
     public void showDetails(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentDetails.fxml"));
@@ -33,10 +41,10 @@ public class StudentHomePageController implements Initializable{ //pay attention
             AnchorPane newScene = loader.load();
             Stage currentStage = new Stage();
             Scene scene = new Scene(newScene);  // Set the loaded AnchorPane as the root of the scene
-            currentStage.setTitle(user.getFullName() + " Details");
+            currentStage.setTitle(student.getFullName() + " Details");
             currentStage.setScene(scene);
             StudentDetails controller = loader.getController();
-            controller.setUser(user);
+            controller.setUser(student);
             controller.initializee();
             currentStage.show();
         } catch (IOException e) {
@@ -44,13 +52,17 @@ public class StudentHomePageController implements Initializable{ //pay attention
         }
     }
 
-    public void showStats(ActionEvent actionEvent) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentStats.fxml"));
-        try {
-            Stage currentStage = new Stage();
+    public void ShowExecutedExams(ActionEvent actionEvent) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowExecutedExams.fxml"));
             AnchorPane newScene = loader.load();
-            Scene scene = new Scene(newScene);  // Set the loaded AnchorPane as the root of the scene
-            currentStage.setTitle(user.getFullName() + " Stats");
+            Scene scene = new Scene(newScene);
+            ShowExecutedExamsController controller = loader.getController();
+            TempController = controller;
+            TempController.setUser(student);
+            TempController.setExecutedExams(student.getExams());
+            Stage currentStage = new Stage();
+            currentStage.setTitle("Executed Exams");
             currentStage.setScene(scene);
             currentStage.show();
         } catch (IOException e) {
@@ -64,11 +76,11 @@ public class StudentHomePageController implements Initializable{ //pay attention
             Stage currentStage = new Stage();
             AnchorPane newScene = loader.load();
             Scene scene = new Scene(newScene);  // Set the loaded AnchorPane as the root of the scene
-            currentStage.setTitle(user.getFullName() + " Grades");
+            currentStage.setTitle(student.getFullName() + " Grades");
             currentStage.setScene(scene);
             StudentGradesController controller = loader.getController();
             NextController = controller;
-            MsgGetGrades msg = new MsgGetGrades("#GetGrades", (Student) user);
+            MsgGetGrades msg = new MsgGetGrades("#GetGrades", (Student) student);
             SimpleClient.getClient().sendToServer(msg);
 //            controller.setStudent((Student) user);
             currentStage.show();
@@ -77,8 +89,8 @@ public class StudentHomePageController implements Initializable{ //pay attention
         }
     }
 
-    public void setUser(User user){
-        this.user=user;
+    public void setUser(Student user){
+        this.student =user;
         nameLabel.setText(user.getFullName());
     }
 
@@ -93,7 +105,7 @@ public class StudentHomePageController implements Initializable{ //pay attention
                 currentStage.setTitle("Take Exam");
                 currentStage.setScene(scene);
                 StudentTakeExamController controller = loader.getController();
-                controller.setStudent((Student) user);
+                controller.setStudent((Student) student);
                 controller.setPcontroller(this);
                 currentStage.show();
             } catch (IOException e) {
@@ -105,7 +117,7 @@ public class StudentHomePageController implements Initializable{ //pay attention
     public void onReceivingGrades(GradesRecievedEvent message){
         if(message.getMessage().getRequest().equals("#GradesReturned")){
             Platform.runLater(() -> {
-                Student student = (Student) user;
+                Student student = (Student) this.student;
                 student.setGrades(message.getMessage().getGradeList());
                 NextController.setStudent(student);
             });

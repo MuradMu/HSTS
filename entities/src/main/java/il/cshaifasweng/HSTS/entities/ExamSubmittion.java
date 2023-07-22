@@ -35,6 +35,7 @@ public class ExamSubmittion implements Serializable {
         this.exam = exam;
         this.answers = answers;
         this.isChecked = false;
+        student.addExam(this);
         for(Question question : exam.getQuestions()){
             this.questionPoints.put(question, 0);
         }

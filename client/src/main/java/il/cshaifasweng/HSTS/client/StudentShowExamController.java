@@ -24,12 +24,9 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-public class ShowExecutedExamController implements Initializable {
+public class StudentShowExamController implements Initializable {
     private Exam exam;
     private ExamSubmittion SubmittedExam;
-
-    @FXML
-    private TextField TeacherDescription;
     @FXML
     private TableView<Question> QuestionsTable;
     private ShowExecutedExamsController PreviousController;
@@ -129,35 +126,12 @@ public class ShowExecutedExamController implements Initializable {
 
             return property;
         });
-        QuestionsTable.setEditable(true);
+        QuestionsTable.setEditable(false);
 
         QuestionsTable.getColumns().addAll(
                 questionNumCol, questionCol, aCol, bCol, cCol, dCol,
-                chosenAnswerCol, correctAnswerCol, pointsCol, studentPointsCol
+                chosenAnswerCol, correctAnswerCol, pointsCol
         );
-    }
-
-    public void SubmitExam(ActionEvent actionEvent) throws IOException {
-        for (Question question : QuestionsTable.getItems()) {
-            int receivedPoints = question.getReceived_points();
-            SubmittedExam.addPoints(question,receivedPoints);
-        }
-        MsgExamSubmittion msg = new MsgExamSubmittion("#UpdateSubmittedExam", SubmittedExam);
-        SimpleClient.getClient().sendToServer(msg);
-        SubmittedExam.setChecked(true);
-        Node sourceNode = (Node) actionEvent.getSource();
-        Stage currentStage = (Stage) sourceNode.getScene().getWindow();
-        currentStage.close();
-//        EventBus.getDefault().unregister(this);
-        Platform.runLater(() -> { // there is a possible that event can sent by another thread, here we ensure it sent by javafx thrad
-            Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                    String.format("Message: \nData: %s",
-                            "This Exam Checked Successfully"));
-            alert.setTitle("Alert!");
-            alert.setHeaderText("Message:");
-            alert.show();
-        });
-        PreviousController.updateLIST();
     }
     public void setPreviousController(ShowExecutedExamsController controller){
         this.PreviousController = controller;

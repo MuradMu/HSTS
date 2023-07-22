@@ -2,6 +2,7 @@ package il.cshaifasweng.HSTS.client;
 
 import il.cshaifasweng.HSTS.entities.ExamSubmittion;
 import il.cshaifasweng.HSTS.entities.Teacher;
+import il.cshaifasweng.HSTS.entities.User;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -27,16 +28,18 @@ public class ShowExecutedExamsController implements Initializable {
     private AnchorPane rootPane;
     @FXML
     private TableView<ExamSubmittion> ExamsTable;
-    private Teacher teacher;
     private List<ExamSubmittion> executedExams;
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
+    private User user;
     public void setExecutedExams(List<ExamSubmittion> examSubmittionList) {
         this.executedExams = examSubmittionList;
         ExamsTable.setItems(FXCollections.observableArrayList(executedExams));
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public void updateLIST() {
         ExamsTable.refresh();
     }
@@ -74,7 +77,7 @@ public class ShowExecutedExamsController implements Initializable {
                 }
             }
         });
-        ExamsTable.getColumns().addAll(IDCol, ExamIDCol, StudentIDCol, CheckExamIDCol);
+        ExamsTable.getColumns().addAll(ExamIDCol, StudentIDCol, CheckExamIDCol);
     }
 
     private void handleEditButtonAction(ExamSubmittion examSubmittion) {
@@ -83,16 +86,28 @@ public class ShowExecutedExamsController implements Initializable {
 
     private void handleCheckButtonAction(ExamSubmittion examSubmittion) {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowExecutedExam.fxml"));
-            AnchorPane newScene = loader.load();
-            Scene scene = new Scene(newScene);
-            ShowExecutedExamController controller = loader.getController();
-            controller.setExecutedExam(examSubmittion);
-            controller.setPreviousController(this);
-            Stage currentStage = new Stage();
-            currentStage.setTitle("Executed Exams");
-            currentStage.setScene(scene);
-            currentStage.show();
+            FXMLLoader loader;
+            if(user.getRole().equals("teacher")){ loader = new FXMLLoader(getClass().getResource("ShowExecutedExam.fxml"));
+                AnchorPane newScene = loader.load();
+                Scene scene = new Scene(newScene);
+                ShowExecutedExamController controller = loader.getController();
+                controller.setExecutedExam(examSubmittion);
+                controller.setPreviousController(this);
+                Stage currentStage = new Stage();
+                currentStage.setTitle("Executed Exams");
+                currentStage.setScene(scene);
+                currentStage.show();}
+            else{loader = new FXMLLoader(getClass().getResource("StudentShowExam.fxml"));
+                AnchorPane newScene = loader.load();
+                Scene scene = new Scene(newScene);
+                StudentShowExamController controller = loader.getController();
+                controller.setExecutedExam(examSubmittion);
+                controller.setPreviousController(this);
+                Stage currentStage = new Stage();
+                currentStage.setTitle("Executed Exams");
+                currentStage.setScene(scene);
+                currentStage.show();}
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
