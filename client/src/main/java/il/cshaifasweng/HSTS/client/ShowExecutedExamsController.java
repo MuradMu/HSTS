@@ -77,7 +77,7 @@ public class ShowExecutedExamsController implements Initializable {
                 }
             }
         });
-        ExamsTable.getColumns().addAll(IDCol, ExamIDCol, StudentIDCol, CheckExamIDCol);
+        ExamsTable.getColumns().addAll(ExamIDCol, StudentIDCol, CheckExamIDCol);
     }
 
     private void handleEditButtonAction(ExamSubmittion examSubmittion) {

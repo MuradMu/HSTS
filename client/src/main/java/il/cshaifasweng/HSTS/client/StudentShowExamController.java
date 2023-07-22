@@ -130,7 +130,7 @@ public class StudentShowExamController implements Initializable {
 
         QuestionsTable.getColumns().addAll(
                 questionNumCol, questionCol, aCol, bCol, cCol, dCol,
-                chosenAnswerCol, correctAnswerCol, pointsCol, studentPointsCol
+                chosenAnswerCol, correctAnswerCol, pointsCol
         );
     }
     public void setPreviousController(ShowExecutedExamsController controller){
