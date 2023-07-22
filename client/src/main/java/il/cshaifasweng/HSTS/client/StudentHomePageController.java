@@ -91,7 +91,7 @@ public class StudentHomePageController implements Initializable{ //pay attention
 
     public void setUser(Student user){
         this.student =user;
-        nameLabel.setText(user.getFullName());
+        nameLabel.setText(user.getFullName() + " Home Page, Welcome!");
     }
 
     public void TakeExam(ActionEvent actionEvent) {

@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.EditExamController">
+<AnchorPane fx:id="rootPane" prefHeight="517.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.EditExamController">
     <children>
           <TableView fx:id="questionTable" layoutY="47.0" prefHeight="331.0" prefWidth="806.0">
                 </TableView>
-          <Button fx:id="UpdateExam" layoutX="11.0" layoutY="467.0" mnemonicParsing="false" onAction="#UpdateExam" prefHeight="65.0" prefWidth="170.0" text="Update Exam">
+          <Button fx:id="UpdateExam" layoutX="641.0" layoutY="438.0" mnemonicParsing="false" onAction="#UpdateExam" prefHeight="60.0" prefWidth="130.0" text="Update Exam" textFill="#002fff">
          <font>
             <Font name="David" size="18.0" />
          </font>
@@ -23,26 +23,26 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-        <Label fx:id="student_disc" layoutX="605.0" layoutY="392.0" text="Student Discription">
+        <Label fx:id="student_disc" layoutX="483.0" layoutY="412.0" text="Student Notes :">
             <font>
-                <Font size="20.0" />
+                <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-      <Label layoutX="12.0" layoutY="393.0" text="Exam time (minutes):">
+      <Label layoutX="12.0" layoutY="393.0" text="Exam time (in minutes):">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="time_minutes" layoutX="194.0" layoutY="392.0" prefHeight="25.0" prefWidth="74.0" text="120">
+      <TextField fx:id="time_minutes" layoutX="220.0" layoutY="392.0" prefHeight="25.0" prefWidth="74.0" text="0">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-        <TextField fx:id="teacher_discription" layoutX="353.0" layoutY="427.0" prefHeight="121.0" prefWidth="205.0" />
-        <TextField fx:id="student_discription" layoutX="587.0" layoutY="427.0" prefHeight="121.0" prefWidth="205.0" />
-        <Label fx:id="teacher_disc" layoutX="371.0" layoutY="390.0" text="Teacher Discription">
+        <TextField fx:id="teacher_discription" layoutX="335.0" layoutY="431.0" prefHeight="73.0" prefWidth="128.0" />
+        <TextField fx:id="student_discription" layoutX="483.0" layoutY="431.0" prefHeight="73.0" prefWidth="128.0" />
+        <Label fx:id="teacher_disc" layoutX="335.0" layoutY="412.0" text="Teacher Notes :">
             <font>
-                <Font size="20.0" />
+                <Font name="System Bold" size="12.0" />
             </font>
         </Label>
     </children>

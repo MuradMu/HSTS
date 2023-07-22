@@ -14,7 +14,7 @@
             <Font name="Calibri" size="45.0" />
          </font>
       </Text>
-      <TextField fx:id="usernameField" layoutX="201.0" layoutY="180.0" prefHeight="47.0" prefWidth="237.0" promptText="ID/username/mail" />
+      <TextField fx:id="usernameField" layoutX="201.0" layoutY="180.0" prefHeight="47.0" prefWidth="237.0" promptText="username" />
       <Button fx:id="loginButton" layoutX="240.0" layoutY="333.0" mnemonicParsing="false" onAction="#logginin" prefHeight="60.0" prefWidth="160.0" text="Login">
          <font>
             <Font size="29.0" />

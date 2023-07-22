@@ -54,7 +54,7 @@ public class TeacherHomePageController {
     * */
     void initializee() {
         EventBus.getDefault().register(this);
-        welcomeLabel.setText("Welcome "+ user.getFullName());
+        welcomeLabel.setText(user.getFullName() + " Home Page, Welcome!");
     }
         // both three functions below ensure for us that teacher is updated when we still online
     @Subscribe
@@ -120,6 +120,25 @@ public class TeacherHomePageController {
             Stage currentStage = new Stage();
             currentStage.setTitle("Create a new exam");
             currentStage.setScene(scene);
+            currentStage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void TeacherShowQuestion(ActionEvent actionEvent){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TShowQue.fxml"));
+            AnchorPane newScene = loader.load();
+            Scene scene = new Scene(newScene);
+            il.cshaifasweng.HSTS.client.TShowQueController controller = loader.getController();
+            controller.setTeacher(teacher);
+            controller.initializee();
+            Stage currentStage = new Stage();
+            currentStage.setTitle("My Question");
+            currentStage.setScene(scene);
+            controller.setStage(currentStage);
+            controller.setupWindowCloseHandler();
             currentStage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

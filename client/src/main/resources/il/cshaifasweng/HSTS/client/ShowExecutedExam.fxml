@@ -11,16 +11,16 @@
 <AnchorPane prefHeight="465.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.HSTS.client.ShowExecutedExamController">
     <children>
         <VBox layoutX="14.0" layoutY="331.0" spacing="10" />
-        <TextField fx:id="TeacherDescription" layoutX="483.0" layoutY="366.0" prefHeight="75.0" prefWidth="264.0" />
-        <Label layoutX="483.0" layoutY="341.0" prefHeight="26.0" prefWidth="133.0" text="Teacher's Note:">
+        <TextField fx:id="TeacherDescription" layoutX="311.0" layoutY="369.0" prefHeight="75.0" prefWidth="218.0" />
+        <Label layoutX="311.0" layoutY="341.0" prefHeight="26.0" prefWidth="133.0" text="Teacher's Note:">
             <font>
                 <Font name="System Bold Italic" size="14.0" />
             </font>
         </Label>
       <TableView fx:id="QuestionsTable" layoutY="-2.0" prefHeight="343.0" prefWidth="836.0" />
-      <Button fx:id="submitButton" layoutX="14.0" layoutY="367.0" mnemonicParsing="false" onAction="#SubmitExam" prefHeight="75.0" prefWidth="188.0" text="Submit">
+      <Button fx:id="submitButton" layoutX="590.0" layoutY="368.0" mnemonicParsing="false" onAction="#SubmitExam" prefHeight="75.0" prefWidth="188.0" text="Submit" textFill="#0020e5">
          <font>
-            <Font size="37.0" />
+            <Font size="24.0" />
          </font>
       </Button>
     </children>
