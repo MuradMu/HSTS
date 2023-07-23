@@ -51,6 +51,7 @@ public class Student extends User implements Serializable {
 
     public void addExam(ExamSubmittion exam){
         this.submitted_exams.add(exam);
+        for(ExamSubmittion ex : submitted_exams){System.out.println(ex.getId_num());}
     }
 
     public void removeExam(ExamSubmittion exam){

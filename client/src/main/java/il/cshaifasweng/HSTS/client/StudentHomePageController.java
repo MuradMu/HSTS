@@ -1,9 +1,7 @@
 package il.cshaifasweng.HSTS.client;
+import il.cshaifasweng.HSTS.entities.*;
 import javafx.scene.control.Label;
 
-import il.cshaifasweng.HSTS.entities.MsgGetGrades;
-import il.cshaifasweng.HSTS.entities.Student;
-import il.cshaifasweng.HSTS.entities.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +17,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class StudentHomePageController implements Initializable{ //pay attention, till now you didnt register your class to eventbus i think
@@ -27,12 +26,8 @@ public class StudentHomePageController implements Initializable{ //pay attention
     private StudentGradesController NextController;
     @FXML
     private Label nameLabel;
-    @FXML
-    private Button showExams;
 
     private boolean take_exam = false;
-
-    private ShowExecutedExamsController TempController;
 
 
     public void showDetails(ActionEvent actionEvent) {
@@ -51,25 +46,6 @@ public class StudentHomePageController implements Initializable{ //pay attention
             throw new RuntimeException(e);
         }
     }
-
-    public void ShowExecutedExams(ActionEvent actionEvent) {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowExecutedExams.fxml"));
-            AnchorPane newScene = loader.load();
-            Scene scene = new Scene(newScene);
-            ShowExecutedExamsController controller = loader.getController();
-            TempController = controller;
-            TempController.setUser(student);
-            TempController.setExecutedExams(student.getExams());
-            Stage currentStage = new Stage();
-            currentStage.setTitle("Executed Exams");
-            currentStage.setScene(scene);
-            currentStage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void showGrades(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentGrades.fxml"));
         try {
