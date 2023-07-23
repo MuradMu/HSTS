@@ -97,17 +97,6 @@ public class ShowExecutedExamsController implements Initializable {
                 currentStage.setTitle("Executed Exams");
                 currentStage.setScene(scene);
                 currentStage.show();}
-            else{loader = new FXMLLoader(getClass().getResource("StudentShowExam.fxml"));
-                AnchorPane newScene = loader.load();
-                Scene scene = new Scene(newScene);
-                StudentShowExamController controller = loader.getController();
-                controller.setExecutedExam(examSubmittion);
-                controller.setPreviousController(this);
-                Stage currentStage = new Stage();
-                currentStage.setTitle("Executed Exams");
-                currentStage.setScene(scene);
-                currentStage.show();}
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

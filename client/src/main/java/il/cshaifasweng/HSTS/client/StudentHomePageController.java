@@ -1,9 +1,7 @@
 package il.cshaifasweng.HSTS.client;
+import il.cshaifasweng.HSTS.entities.*;
 import javafx.scene.control.Label;
 
-import il.cshaifasweng.HSTS.entities.MsgGetGrades;
-import il.cshaifasweng.HSTS.entities.Student;
-import il.cshaifasweng.HSTS.entities.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +17,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class StudentHomePageController implements Initializable{ //pay attention, till now you didnt register your class to eventbus i think
@@ -58,9 +57,14 @@ public class StudentHomePageController implements Initializable{ //pay attention
             AnchorPane newScene = loader.load();
             Scene scene = new Scene(newScene);
             ShowExecutedExamsController controller = loader.getController();
+            List<ExamSubmittion> exams = null;
+            for(Grade grade : student.getGrades()){
+                exams.add(grade.getExam());
+                System.out.println(grade.getExam().getId_num());
+            }
             TempController = controller;
             TempController.setUser(student);
-            TempController.setExecutedExams(student.getExams());
+            TempController.setExecutedExams(exams);
             Stage currentStage = new Stage();
             currentStage.setTitle("Executed Exams");
             currentStage.setScene(scene);

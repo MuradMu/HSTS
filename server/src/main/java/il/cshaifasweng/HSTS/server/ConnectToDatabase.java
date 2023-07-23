@@ -141,15 +141,15 @@ public class ConnectToDatabase {
         return course;
     }
 
-    public static void set_courseGrade(Student student, Course course, int grade){
-        Grade grade1 = new Grade(grade, student, course);
+    public static void set_courseGrade(Student student, Course course, int grade, ExamSubmittion exam){
+        Grade grade1 = new Grade(grade, student, course, exam);
         session.save(grade1);
         session.save(student);
         session.save(course);
         session.flush();
     }
 
-    public static void set_courseGrade2(Student student, Course course, int sum) throws Exception {
+    public static void set_courseGrade2(Student student, Course course, int sum, ExamSubmittion exam) throws Exception {
         List<Student> studentList = getAllStudents();
         List<Course> courseList = getAllCourses();
         Course course1 = null;
@@ -176,7 +176,7 @@ public class ConnectToDatabase {
                     }
                 }
                 if(flag){
-                    Grade grade = new Grade(sum, student1, course1);
+                    Grade grade = new Grade(sum, student1, course1, exam);
                     session.save(grade);
                     session.flush();
                 }

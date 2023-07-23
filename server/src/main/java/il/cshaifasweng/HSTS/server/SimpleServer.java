@@ -250,7 +250,7 @@ public class SimpleServer extends AbstractServer {
 					System.out.println("Points: " + points);
 					sum +=points;
 				}
-				ConnectToDatabase.set_courseGrade2(exam.getStudent(), exam.getExam().getCourse(), sum);
+				ConnectToDatabase.set_courseGrade2(exam.getStudent(), exam.getExam().getCourse(), sum, exam);
 				System.out.print("\nexam id = " + exam.getId_num() + "\n");
 				System.out.print("Exam saved");
 				session.getTransaction().commit();

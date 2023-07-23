@@ -29,7 +29,7 @@ public class StudentShowExamController implements Initializable {
     private ExamSubmittion SubmittedExam;
     @FXML
     private TableView<Question> QuestionsTable;
-    private ShowExecutedExamsController PreviousController;
+    private StudentGradesController PreviousController;
 
     public void updateLIST() {
         QuestionsTable.refresh();
@@ -42,7 +42,6 @@ public class StudentShowExamController implements Initializable {
         // Clear previous data
         QuestionsTable.getItems().clear();
         // Add submitted exam data to the table
-        if(SubmittedExam.getChecked()){
             Map<Question,Integer> pointsmap = SubmittedExam.getQuestionPoints();
             Set<Question> questionsset = pointsmap.keySet();
             for(Question question : questions){
@@ -57,21 +56,6 @@ public class StudentShowExamController implements Initializable {
                 }
                 QuestionsTable.getItems().add(question);
             }
-        }else{
-            for (Question question : questions) {
-                String chosenAnswer = chosenAnswers.get(question);
-                int points = questionPoints.getOrDefault(question, 0);
-
-                question.setChosenAnswer(chosenAnswer);
-                question.setPoints(points);
-                if(question.getCorrectAnswer().equals(question.getChosenAnswer())){
-                    question.setReceived_points(points);
-                }else{
-                    question.setReceived_points(0);
-                }
-                QuestionsTable.getItems().add(question);
-            }
-        }
         QuestionsTable.refresh();
     }
 
@@ -130,10 +114,10 @@ public class StudentShowExamController implements Initializable {
 
         QuestionsTable.getColumns().addAll(
                 questionNumCol, questionCol, aCol, bCol, cCol, dCol,
-                chosenAnswerCol, correctAnswerCol, pointsCol
+                chosenAnswerCol, correctAnswerCol, pointsCol, studentPointsCol
         );
     }
-    public void setPreviousController(ShowExecutedExamsController controller){
+    public void setPreviousController(StudentGradesController controller){
         this.PreviousController = controller;
     }
 }

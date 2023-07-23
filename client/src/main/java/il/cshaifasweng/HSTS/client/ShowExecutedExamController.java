@@ -145,6 +145,8 @@ public class ShowExecutedExamController implements Initializable {
         MsgExamSubmittion msg = new MsgExamSubmittion("#UpdateSubmittedExam", SubmittedExam);
         SimpleClient.getClient().sendToServer(msg);
         SubmittedExam.setChecked(true);
+        Student student = SubmittedExam.getStudent();
+        student.addExam(SubmittedExam);
         Node sourceNode = (Node) actionEvent.getSource();
         Stage currentStage = (Stage) sourceNode.getScene().getWindow();
         currentStage.close();

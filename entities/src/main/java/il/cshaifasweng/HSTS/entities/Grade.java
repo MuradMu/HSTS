@@ -1,7 +1,12 @@
 package il.cshaifasweng.HSTS.entities;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Grades")
@@ -28,19 +33,28 @@ public class Grade implements Serializable {
     @JoinColumn(name = "student_id")
     private Student student;
 
-    public Grade(int g, Student student, Course course){
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "exam_id")
+    private ExamSubmittion exam;
+
+
+
+    public Grade(int g, Student student, Course course, ExamSubmittion exam){
         super();
         this.grade = g;
         this.course = course;
         this.student = student;
+        this.exam = exam;
         this.course_name = course.getCourse_name();
         this.student_name = student.getStudentName();
         student.set_courseGradee(course, this);
+        System.out.println("this exam " + this.exam.getId_num());
     }
     public Grade() {
         this.grade = -1;
     }
     public int getGrade(){return this.grade;}
+    public ExamSubmittion getExam(){return this.exam;}
     public void updateGrade(int new_Grade){
         this.grade = new_Grade;
     }
