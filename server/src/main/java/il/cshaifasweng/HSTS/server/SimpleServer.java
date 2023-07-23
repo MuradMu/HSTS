@@ -156,6 +156,7 @@ public class SimpleServer extends AbstractServer {
 			System.out.print("\nLogging out: " + message.getUser());
 			for(User user: OnlineUsers){
 				if (user.getId().equals(message.getUser().getId())){
+					session.save(user);
 					OnlineUsers.remove(user);
 					break;
 				}
