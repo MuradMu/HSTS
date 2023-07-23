@@ -13,12 +13,12 @@
             <Font size="29.0" />
          </font>
       </Button>
-      <Button fx:id="courses_grades" layoutX="191.0" layoutY="209.0" mnemonicParsing="false" onAction="#showGrades" prefHeight="62.0" prefWidth="260.0" text="Grades">
+      <Button fx:id="courses_grades" layoutX="191.0" layoutY="209.0" mnemonicParsing="false" onAction="#showGrades" prefHeight="62.0" prefWidth="260.0" text="Exams">
          <font>
             <Font size="28.0" />
          </font>
       </Button>
-      <Button fx:id="takeExams" layoutX="190.0" layoutY="380.0" mnemonicParsing="false" onAction="#TakeExam" prefHeight="62.0" prefWidth="260.0" text="Start Exam">
+      <Button fx:id="takeExams" layoutX="190.0" layoutY="295.0" mnemonicParsing="false" onAction="#TakeExam" prefHeight="62.0" prefWidth="260.0" text="Start Exam">
          <font>
             <Font size="28.0" />
          </font>
@@ -33,10 +33,5 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="showExams" layoutX="191.0" layoutY="293.0" mnemonicParsing="false" onAction="#ShowExecutedExams" prefHeight="62.0" prefWidth="260.0" text="Show Exams">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

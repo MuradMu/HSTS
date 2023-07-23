@@ -54,6 +54,10 @@ public class Grade implements Serializable {
         this.grade = -1;
     }
     public int getGrade(){return this.grade;}
+
+    public void setExam(ExamSubmittion exam) {
+        this.exam = exam;
+    }
     public ExamSubmittion getExam(){return this.exam;}
     public void updateGrade(int new_Grade){
         this.grade = new_Grade;

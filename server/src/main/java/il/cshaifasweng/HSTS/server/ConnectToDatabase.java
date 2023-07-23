@@ -169,8 +169,9 @@ public class ConnectToDatabase {
             if(course1 != null){
                 List<Grade> grades = student1.getGrades();
                 for(Grade grade1 : grades){
-                    if(grade1.getCourse() == course1){
+                    if(grade1.getCourse() == course1 && grade1.getExam().getId_num() == exam.getId_num()){
                         grade1.setGrade(sum);
+                        grade1.setExam(exam);
                         session.flush();
                         flag = false;
                     }

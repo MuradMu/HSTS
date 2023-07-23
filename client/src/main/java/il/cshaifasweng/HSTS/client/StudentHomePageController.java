@@ -26,12 +26,8 @@ public class StudentHomePageController implements Initializable{ //pay attention
     private StudentGradesController NextController;
     @FXML
     private Label nameLabel;
-    @FXML
-    private Button showExams;
 
     private boolean take_exam = false;
-
-    private ShowExecutedExamsController TempController;
 
 
     public void showDetails(ActionEvent actionEvent) {
@@ -50,30 +46,6 @@ public class StudentHomePageController implements Initializable{ //pay attention
             throw new RuntimeException(e);
         }
     }
-
-    public void ShowExecutedExams(ActionEvent actionEvent) {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowExecutedExams.fxml"));
-            AnchorPane newScene = loader.load();
-            Scene scene = new Scene(newScene);
-            ShowExecutedExamsController controller = loader.getController();
-            List<ExamSubmittion> exams = null;
-            for(Grade grade : student.getGrades()){
-                exams.add(grade.getExam());
-                System.out.println(grade.getExam().getId_num());
-            }
-            TempController = controller;
-            TempController.setUser(student);
-            TempController.setExecutedExams(exams);
-            Stage currentStage = new Stage();
-            currentStage.setTitle("Executed Exams");
-            currentStage.setScene(scene);
-            currentStage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void showGrades(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentGrades.fxml"));
         try {
